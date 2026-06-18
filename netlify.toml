@@ -1,0 +1,59 @@
+# GDPR Risk Assessment Dashboard — Netlify Configuration
+
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "public"
+
+[dev]
+  functions = "netlify/functions"
+  publish = "public"
+
+# Environment variables (da impostare in Netlify UI)
+[build.environment]
+  NODE_VERSION = "18"
+
+# Rewrite per SPA (Single Page App)
+[[redirects]]
+  from = "/app/*"
+  to = "/dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/index.html"
+  to = "/login.html"
+  status = 200
+
+# Redirect root a login
+[[redirects]]
+  from = "/"
+  to = "/login.html"
+  status = 200
+
+# Protezione headers di sicurezza
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache policy per HTML (no-cache per app)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Cache per assets statici
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Rate limiting su login (protezione brute-force)
+[[headers]]
+  for = "/.netlify/functions/login"
+  [headers.values]
+    X-Rate-Limit = "10-per-minute"

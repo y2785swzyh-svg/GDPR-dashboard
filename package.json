@@ -1,0 +1,17 @@
+{
+  "name": "gdpr-risk-dashboard",
+  "version": "5.3.0",
+  "description": "GDPR Risk Assessment Dashboard — Powered by Aegis Advisory",
+  "main": "netlify/functions/login.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Build complete'",
+    "start": "netlify dev"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "author": "Aegis Advisory",
+  "license": "PROPRIETARY"
+}

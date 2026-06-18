@@ -1,0 +1,954 @@
+{
+  "answers": {
+    "q1": "Sì, aggiornato",
+    "q2": "No",
+    "q3": "Sì",
+    "q4": "No",
+    "q5": "No",
+    "q7": "Sì",
+    "q8": "Sì",
+    "q9": "Sì",
+    "q10": "Sì",
+    "q11": "Sì",
+    "q13": "Sì",
+    "q14": "No",
+    "q15": "Sì",
+    "q16": "Sì",
+    "q17": "Sì",
+    "q18": "Annuale o più frequente",
+    "q19": "Sì",
+    "q21": "Sì",
+    "q22": "Sì",
+    "q23": "No",
+    "q24": "No",
+    "q25": "Negli ultimi 12 mesi",
+    "q26": "Sì",
+    "q27": "Sì",
+    "q28": "Sì",
+    "q29": "Sì",
+    "q30": "Sì, piano completo",
+    "q31": "Negli ultimi 12 mesi",
+    "q32": "Non applicabile",
+    "q33": "No",
+    "q34": "Sì",
+    "q35": "No",
+    "q37": "Sì",
+    "q36": "Preso atto",
+    "q20": "Sì",
+    "q6": "No",
+    "q12": "No"
+  },
+  "riskMapping": {
+    "R1": {
+      "name": "Assenza Piano BC&DR — Disastro IT / Indisponibilità piattaforma",
+      "baseProb": 2,
+      "baseImpact": 4
+    },
+    "R2": {
+      "name": "Registro Trattamenti obsoleto o incompleto (dati sanitari pazienti)",
+      "baseProb": 3,
+      "baseImpact": 3
+    },
+    "R3": {
+      "name": "DPIA insufficiente — piano d'azione vuoto per trattamenti ad alto rischio",
+      "baseProb": 3,
+      "baseImpact": 3
+    },
+    "R4": {
+      "name": "Informativa privacy/consenso digitale non aggiornata (AI, profilazione)",
+      "baseProb": 3,
+      "baseImpact": 3
+    },
+    "R5": {
+      "name": "Assenza Registro Violazioni e procedura notifica Garante 72h (art. 33)",
+      "baseProb": 2,
+      "baseImpact": 2
+    },
+    "R6": {
+      "name": "DPA con fornitori cloud/SaaS non verificati (AWS, Twilio, Mailchimp…)",
+      "baseProb": 2,
+      "baseImpact": 3
+    },
+    "R7": {
+      "name": "Formazione GDPR e cybersecurity insufficiente per operatori sanitari",
+      "baseProb": 3,
+      "baseImpact": 2
+    },
+    "R8": {
+      "name": "AI Act — classificazione e conformità sistema AIDA incerta",
+      "baseProb": 2,
+      "baseImpact": 2.5
+    },
+    "R9": {
+      "name": "Cookie Policy non conforme (Provvedimento Garante 10/06/2021)",
+      "baseProb": 2,
+      "baseImpact": 1.5
+    },
+    "R10": {
+      "name": "Data breach dati sanitari — accesso non autorizzato a cartelle cliniche",
+      "baseProb": 3,
+      "baseImpact": 4
+    },
+    "R11": {
+      "name": "Attacco ransomware — cifratura dati e blocco piattaforma di telemedicina",
+      "baseProb": 2,
+      "baseImpact": 4
+    },
+    "R12": {
+      "name": "Intercettazione sessioni video/audio di teleconsulto (man-in-the-middle)",
+      "baseProb": 2,
+      "baseImpact": 4
+    },
+    "R13": {
+      "name": "Accesso non autorizzato tramite credenziali compromesse / phishing",
+      "baseProb": 3,
+      "baseImpact": 3.5
+    },
+    "R14": {
+      "name": "Vulnerabilità API non protette — esposizione endpoint dati pazienti",
+      "baseProb": 3,
+      "baseImpact": 3
+    },
+    "R15": {
+      "name": "Attacco DDoS — indisponibilità piattaforma durante visite programmate",
+      "baseProb": 2,
+      "baseImpact": 3
+    },
+    "R16": {
+      "name": "Errore diagnostico/terapeutico mediato da AI — liability clinica",
+      "baseProb": 2,
+      "baseImpact": 4
+    },
+    "R17": {
+      "name": "Interruzione servizio durante emergenza medica — danno al paziente",
+      "baseProb": 2,
+      "baseImpact": 4
+    },
+    "R18": {
+      "name": "Identificazione errata del paziente (identity mismatch) — prescrizione/referto sbagliato",
+      "baseProb": 2,
+      "baseImpact": 4
+    },
+    "R19": {
+      "name": "Responsabilità civile per malfunzionamento piattaforma durante visita",
+      "baseProb": 2,
+      "baseImpact": 3.5
+    },
+    "R20": {
+      "name": "Assenza o invalidità del consenso informato digitale al teleconsulto",
+      "baseProb": 3,
+      "baseImpact": 3
+    },
+    "R21": {
+      "name": "Non conformità Linee Guida Telemedicina ISS/MinSalute (2020/2022)",
+      "baseProb": 3,
+      "baseImpact": 3
+    },
+    "R22": {
+      "name": "Software medico SaMD non certificato MDR (UE 2017/745) / CE non valido",
+      "baseProb": 2,
+      "baseImpact": 4
+    },
+    "R23": {
+      "name": "Assenza firma digitale qualificata su referti e prescrizioni elettroniche",
+      "baseProb": 3,
+      "baseImpact": 3
+    },
+    "R24": {
+      "name": "Mancata conservazione documentazione sanitaria per 10 anni (D.Lgs. 502)",
+      "baseProb": 2,
+      "baseImpact": 3
+    },
+    "R25": {
+      "name": "Vendor lock-in / dipendenza critica da singolo fornitore cloud",
+      "baseProb": 2,
+      "baseImpact": 3
+    },
+    "R26": {
+      "name": "Capacità infrastrutturale insufficiente — degrado prestazioni a picco",
+      "baseProb": 2,
+      "baseImpact": 2.5
+    },
+    "R27": {
+      "name": "Mancata interoperabilità con FSE (Fascicolo Sanitario Elettronico)",
+      "baseProb": 3,
+      "baseImpact": 2
+    }
+  },
+  "sections": [
+    "4.1 Registro dei Trattamenti",
+    "4.2 Informative agli Interessati",
+    "4.3 Trasferimenti Internazionali",
+    "4.4 Misure di Sicurezza",
+    "4.5 Contratti",
+    "4.6 Formazione",
+    "4.7 DPIA",
+    "4.8 NIS2 e AI Act"
+  ],
+  "questionsData": [
+    {
+      "id": "q1",
+      "section": "4.1 Registro dei Trattamenti",
+      "type": "stato",
+      "question": "Il Registro dei Trattamenti (art. 30 GDPR) è attualmente aggiornato e riflette tutti i trattamenti in corso?",
+      "options": [
+        "Sì, aggiornato",
+        "Parzialmente aggiornato",
+        "No / Non presente"
+      ],
+      "optionScores": {
+        "Sì, aggiornato": 0,
+        "Parzialmente aggiornato": 1.5,
+        "No / Non presente": 3
+      },
+      "risks": [
+        "R2"
+      ]
+    },
+    {
+      "id": "q2",
+      "section": "4.1 Registro dei Trattamenti",
+      "type": "binary",
+      "question": "Nell'ultimo anno sono stati avviati nuovi trattamenti di dati personali non ancora inseriti nel Registro?",
+      "options": [
+        "Sì",
+        "No"
+      ],
+      "optionScores": {
+        "Sì": 3,
+        "No": 0
+      },
+      "risks": [
+        "R2"
+      ]
+    },
+    {
+      "id": "q3",
+      "section": "4.1 Registro dei Trattamenti",
+      "type": "binary",
+      "question": "Sono state avviate procedure di pseudonimizzazione o anonimizzazione per i trattamenti ad alto rischio?",
+      "options": [
+        "Sì",
+        "No",
+        "In corso"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "In corso": 1.5
+      },
+      "risks": [
+        "R2",
+        "R3",
+        "R10"
+      ]
+    },
+    {
+      "id": "q4",
+      "section": "4.1 Registro dei Trattamenti",
+      "type": "stato",
+      "question": "Negli ultimi 12 mesi sono cambiate significativamente le finalità o le modalità di trattamento già registrate?",
+      "options": [
+        "Sì, modifiche significative",
+        "Modifiche minori",
+        "No"
+      ],
+      "optionScores": {
+        "Sì, modifiche significative": 3,
+        "Modifiche minori": 1.5,
+        "No": 0
+      },
+      "risks": [
+        "R2",
+        "R4",
+        "R21"
+      ]
+    },
+    {
+      "id": "q5",
+      "section": "4.1 Registro dei Trattamenti",
+      "type": "binary",
+      "question": "Sono stati ingaggiati nuovi fornitori o responsabili del trattamento (art. 28) non ancora censiti nel Registro?",
+      "options": [
+        "Sì",
+        "No"
+      ],
+      "optionScores": {
+        "Sì": 3,
+        "No": 0
+      },
+      "risks": [
+        "R2",
+        "R6",
+        "R25"
+      ]
+    },
+    {
+      "id": "q6",
+      "section": "4.1 Registro dei Trattamenti",
+      "type": "allocazione",
+      "question": "I trattamenti includono dati di minori?",
+      "options": [
+        "Sì, minori sotto i 14 anni",
+        "Sì, minori 14-18 anni",
+        "No"
+      ],
+      "optionScores": {
+        "Sì, minori sotto i 14 anni": 3,
+        "Sì, minori 14-18 anni": 2,
+        "No": 0
+      },
+      "risks": [
+        "R2",
+        "R4",
+        "R20"
+      ]
+    },
+    {
+      "id": "q7",
+      "section": "4.2 Informative agli Interessati",
+      "type": "binary",
+      "question": "L'informativa privacy rivolta ai pazienti/utenti della piattaforma Welmed è stata aggiornata negli ultimi 12 mesi?",
+      "options": [
+        "Sì",
+        "No"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3
+      },
+      "risks": [
+        "R4",
+        "R9",
+        "R20",
+        "R21"
+      ]
+    },
+    {
+      "id": "q8",
+      "section": "4.2 Informative agli Interessati",
+      "type": "binary",
+      "question": "L'informativa per i dipendenti e collaboratori è completa e aggiornata rispetto agli strumenti IT in uso?",
+      "options": [
+        "Sì",
+        "No",
+        "Parzialmente"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Parzialmente": 1.5
+      },
+      "risks": [
+        "R4",
+        "R7",
+        "R20"
+      ]
+    },
+    {
+      "id": "q9",
+      "section": "4.2 Informative agli Interessati",
+      "type": "binary",
+      "question": "L'informativa menziona esplicitamente il trattamento tramite sistemi di intelligenza artificiale (es. AIDA)?",
+      "options": [
+        "Sì",
+        "No"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3
+      },
+      "risks": [
+        "R4",
+        "R8",
+        "R16",
+        "R20"
+      ]
+    },
+    {
+      "id": "q10",
+      "section": "4.2 Informative agli Interessati",
+      "type": "binary",
+      "question": "La Cookie Policy del sito/portale Welmed è conforme al Provvedimento del Garante del 10 giugno 2021?",
+      "options": [
+        "Sì",
+        "No",
+        "In revisione"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "In revisione": 1.5
+      },
+      "risks": [
+        "R9"
+      ]
+    },
+    {
+      "id": "q11",
+      "section": "4.2 Informative agli Interessati",
+      "type": "binary",
+      "question": "Le informative indicano chiaramente i tempi di conservazione dei dati per ciascuna categoria di trattamento?",
+      "options": [
+        "Sì",
+        "No",
+        "Parzialmente"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Parzialmente": 1.5
+      },
+      "risks": [
+        "R2",
+        "R4",
+        "R24"
+      ]
+    },
+    {
+      "id": "q12",
+      "section": "4.2 Informative agli Interessati",
+      "type": "binary",
+      "question": "È disponibile una procedura documentata per gestire le richieste degli interessati (accesso, rettifica, cancellazione)?",
+      "options": [
+        "Sì",
+        "No",
+        "In fase di redazione"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "In fase di redazione": 1.5
+      },
+      "risks": [
+        "R4",
+        "R5",
+        "R10"
+      ]
+    },
+    {
+      "id": "q13",
+      "section": "4.3 Trasferimenti Internazionali",
+      "type": "binary",
+      "question": "Per i trasferimenti verso USA o altri Paesi extra-SEE, è stato verificato lo strumento di garanzia (es. Data Privacy Framework, SCC)?",
+      "options": [
+        "Sì",
+        "No",
+        "Non applicabile"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Non applicabile": 0
+      },
+      "risks": [
+        "R6",
+        "R10",
+        "R25"
+      ]
+    },
+    {
+      "id": "q14",
+      "section": "4.3 Trasferimenti Internazionali",
+      "type": "binary",
+      "question": "Vengono utilizzati fornitori di servizi cloud o software con server ubicati fuori dall'Unione Europea?",
+      "options": [
+        "Sì",
+        "No"
+      ],
+      "optionScores": {
+        "Sì": 3,
+        "No": 0
+      },
+      "risks": [
+        "R6",
+        "R10",
+        "R25"
+      ]
+    },
+    {
+      "id": "q15",
+      "section": "4.4 Misure di Sicurezza",
+      "type": "binary",
+      "question": "È presente e aggiornato un Piano di Business Continuity e Disaster Recovery (BC&DR) per i sistemi IT critici?",
+      "options": [
+        "Sì",
+        "No",
+        "In fase di redazione"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "In fase di redazione": 1.5
+      },
+      "risks": [
+        "R1",
+        "R11",
+        "R15",
+        "R17"
+      ]
+    },
+    {
+      "id": "q16",
+      "section": "4.4 Misure di Sicurezza",
+      "type": "binary",
+      "question": "I backup dei dati vengono eseguiti regolarmente e i ripristini vengono testati periodicamente?",
+      "options": [
+        "Sì",
+        "No",
+        "Backup sì, test no"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Backup sì, test no": 1.5
+      },
+      "risks": [
+        "R1",
+        "R10",
+        "R11",
+        "R24"
+      ]
+    },
+    {
+      "id": "q17",
+      "section": "4.4 Misure di Sicurezza",
+      "type": "binary",
+      "question": "È presente un Registro delle Violazioni dei dati personali (art. 33 par. 5 GDPR)?",
+      "options": [
+        "Sì",
+        "No"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3
+      },
+      "risks": [
+        "R5",
+        "R10"
+      ]
+    },
+    {
+      "id": "q18",
+      "section": "4.4 Misure di Sicurezza",
+      "type": "frequenza",
+      "question": "Con quale frequenza vengono condotti vulnerability assessment o penetration test sull'infrastruttura?",
+      "options": [
+        "Annuale o più frequente",
+        "Mai o irregolare",
+        "Solo dopo incidenti"
+      ],
+      "optionScores": {
+        "Annuale o più frequente": 0,
+        "Mai o irregolare": 3,
+        "Solo dopo incidenti": 2
+      },
+      "risks": [
+        "R1",
+        "R5",
+        "R10",
+        "R11",
+        "R14",
+        "R15"
+      ]
+    },
+    {
+      "id": "q19",
+      "section": "4.4 Misure di Sicurezza",
+      "type": "binary",
+      "question": "È implementata l'autenticazione a più fattori (MFA) per gli accessi ai sistemi contenenti dati sanitari?",
+      "options": [
+        "Sì",
+        "No",
+        "Parzialmente"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Parzialmente": 1.5
+      },
+      "risks": [
+        "R1",
+        "R5",
+        "R10",
+        "R12",
+        "R13",
+        "R18"
+      ]
+    },
+    {
+      "id": "q20",
+      "section": "4.4 Misure di Sicurezza",
+      "type": "binary",
+      "question": "Esiste una procedura documentata per la notifica delle violazioni al Garante entro 72 ore (art. 33 GDPR)?",
+      "options": [
+        "Sì",
+        "No",
+        "In fase di redazione"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "In fase di redazione": 1.5
+      },
+      "risks": [
+        "R5",
+        "R10"
+      ]
+    },
+    {
+      "id": "q21",
+      "section": "4.5 Contratti",
+      "type": "binary",
+      "question": "Con tutti i fornitori che trattano dati per conto di Welmed (es. AWS, Mailchimp, Twilio) è stato stipulato un DPA (Data Processing Agreement) ex art. 28?",
+      "options": [
+        "Sì",
+        "No",
+        "Parzialmente"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Parzialmente": 1.5
+      },
+      "risks": [
+        "R6",
+        "R10",
+        "R25"
+      ]
+    },
+    {
+      "id": "q22",
+      "section": "4.5 Contratti",
+      "type": "binary",
+      "question": "I DPA esistenti includono le clausole obbligatorie previste dall'art. 28 GDPR (istruzioni, sub-responsabili, audit, ecc.)?",
+      "options": [
+        "Sì",
+        "No",
+        "Da verificare"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Da verificare": 1.5
+      },
+      "risks": [
+        "R6",
+        "R10"
+      ]
+    },
+    {
+      "id": "q23",
+      "section": "4.5 Contratti",
+      "type": "binary",
+      "question": "Sono state nominate formalmente le persone autorizzate al trattamento (lettere di nomina/designazione ex art. 29)?",
+      "options": [
+        "Sì",
+        "No",
+        "Parzialmente"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Parzialmente": 1.5
+      },
+      "risks": [
+        "R2",
+        "R7",
+        "R13"
+      ]
+    },
+    {
+      "id": "q24",
+      "section": "4.5 Contratti",
+      "type": "binary",
+      "question": "I contratti con i fornitori IT includono clausole di sicurezza, SLA di disponibilità e obblighi di breach notification?",
+      "options": [
+        "Sì",
+        "No",
+        "Parzialmente"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Parzialmente": 1.5
+      },
+      "risks": [
+        "R1",
+        "R6",
+        "R11",
+        "R17",
+        "R19",
+        "R25"
+      ]
+    },
+    {
+      "id": "q25",
+      "section": "4.6 Formazione",
+      "type": "temporalità",
+      "question": "Quando è stata effettuata l'ultima sessione di formazione GDPR per il personale che tratta dati personali?",
+      "options": [
+        "Negli ultimi 12 mesi",
+        "Da 1 a 3 anni fa",
+        "Oltre 3 anni fa / Mai"
+      ],
+      "optionScores": {
+        "Negli ultimi 12 mesi": 0,
+        "Da 1 a 3 anni fa": 1.5,
+        "Oltre 3 anni fa / Mai": 3
+      },
+      "risks": [
+        "R7",
+        "R13"
+      ]
+    },
+    {
+      "id": "q26",
+      "section": "4.6 Formazione",
+      "type": "binary",
+      "question": "La formazione copre cybersecurity (phishing, social engineering, gestione credenziali) e procedure di telemedicina sicura?",
+      "options": [
+        "Sì",
+        "No",
+        "Parzialmente"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Parzialmente": 1.5
+      },
+      "risks": [
+        "R7",
+        "R1",
+        "R13",
+        "R18"
+      ]
+    },
+    {
+      "id": "q27",
+      "section": "4.6 Formazione",
+      "type": "binary",
+      "question": "Esiste un piano di formazione annuale documentato che include GDPR, cybersecurity e normativa sanitaria digitale?",
+      "options": [
+        "Sì",
+        "No"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3
+      },
+      "risks": [
+        "R7",
+        "R21"
+      ]
+    },
+    {
+      "id": "q28",
+      "section": "4.6 Formazione",
+      "type": "binary",
+      "question": "Il personale sanitario è formato sulla gestione dei data breach e sulla corretta identificazione del paziente nel teleconsulto?",
+      "options": [
+        "Sì",
+        "No",
+        "Parzialmente"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Parzialmente": 1.5
+      },
+      "risks": [
+        "R5",
+        "R7",
+        "R10",
+        "R18"
+      ]
+    },
+    {
+      "id": "q29",
+      "section": "4.7 DPIA",
+      "type": "binary",
+      "question": "Per i trattamenti ad alto rischio (dati sanitari, profilazione, IA, teleconsulto) è stata condotta una DPIA?",
+      "options": [
+        "Sì",
+        "No",
+        "In corso"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "In corso": 1.5
+      },
+      "risks": [
+        "R3",
+        "R10",
+        "R16",
+        "R22"
+      ]
+    },
+    {
+      "id": "q30",
+      "section": "4.7 DPIA",
+      "type": "stato",
+      "question": "La DPIA contiene un piano d'azione con misure concrete per ridurre i rischi identificati?",
+      "options": [
+        "Sì, piano completo",
+        "Piano parziale",
+        "Piano vuoto / Assente"
+      ],
+      "optionScores": {
+        "Sì, piano completo": 0,
+        "Piano parziale": 1.5,
+        "Piano vuoto / Assente": 3
+      },
+      "risks": [
+        "R3",
+        "R16"
+      ]
+    },
+    {
+      "id": "q31",
+      "section": "4.7 DPIA",
+      "type": "temporalità",
+      "question": "Quando è stata condotta o aggiornata l'ultima DPIA?",
+      "options": [
+        "Negli ultimi 12 mesi",
+        "Da 1 a 2 anni fa",
+        "Oltre 2 anni fa / Mai"
+      ],
+      "optionScores": {
+        "Negli ultimi 12 mesi": 0,
+        "Da 1 a 2 anni fa": 1.5,
+        "Oltre 2 anni fa / Mai": 3
+      },
+      "risks": [
+        "R3",
+        "R10",
+        "R21"
+      ]
+    },
+    {
+      "id": "q32",
+      "section": "4.7 DPIA",
+      "type": "binary",
+      "question": "La DPIA per i sistemi AI (es. AIDA) è stata aggiornata per riflettere i requisiti dell'AI Act e del Regolamento MDR?",
+      "options": [
+        "Sì",
+        "No",
+        "Non applicabile"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Non applicabile": 0
+      },
+      "risks": [
+        "R3",
+        "R8",
+        "R16",
+        "R22"
+      ]
+    },
+    {
+      "id": "q33",
+      "section": "4.8 NIS2 e AI Act",
+      "type": "binary",
+      "question": "Welmed supera le soglie dimensionali o settoriali che la renderebbero soggetta alla Direttiva NIS2 (operatore sanitario medio/grande)?",
+      "options": [
+        "Sì",
+        "No",
+        "Da valutare"
+      ],
+      "optionScores": {
+        "Sì": 3,
+        "No": 0,
+        "Da valutare": 1.5
+      },
+      "risks": [
+        "R1",
+        "R5",
+        "R11",
+        "R15"
+      ]
+    },
+    {
+      "id": "q34",
+      "section": "4.8 NIS2 e AI Act",
+      "type": "binary",
+      "question": "Se soggetta a NIS2, è stata effettuata la registrazione presso l'ACN (Agenzia per la Cybersicurezza Nazionale) e adottate le misure di sicurezza richieste?",
+      "options": [
+        "Sì",
+        "No",
+        "Non applicabile"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "Non applicabile": 0
+      },
+      "risks": [
+        "R1",
+        "R11",
+        "R15"
+      ]
+    },
+    {
+      "id": "q35",
+      "section": "4.8 NIS2 e AI Act",
+      "type": "allocazione",
+      "question": "Il sistema AIDA prende decisioni autonome o semi-autonome che producono effetti clinici, diagnostici o terapeutici sugli interessati?",
+      "options": [
+        "Sì, decisioni autonome (alto rischio)",
+        "Sì, supporto decisionale",
+        "No"
+      ],
+      "optionScores": {
+        "Sì, decisioni autonome (alto rischio)": 3,
+        "Sì, supporto decisionale": 1,
+        "No": 0
+      },
+      "risks": [
+        "R8",
+        "R4",
+        "R16",
+        "R22"
+      ]
+    },
+    {
+      "id": "q36",
+      "section": "4.8 NIS2 e AI Act",
+      "type": "informativo",
+      "question": "Informazione: L'AI Act classifica i sistemi AI sanitari tipicamente come 'alto rischio' (Allegato III). Il Regolamento MDR (UE 2017/745) può richiedere certificazione CE per software che influenza decisioni diagnostiche/terapeutiche. I due regolamenti si applicano cumulativamente.",
+      "options": [
+        "Preso atto"
+      ],
+      "optionScores": "informativo",
+      "risks": [
+        "R8",
+        "R22"
+      ]
+    },
+    {
+      "id": "q37",
+      "section": "4.8 NIS2 e AI Act",
+      "type": "binary",
+      "question": "È disponibile la documentazione tecnica richiesta dall'AI Act (scheda tecnica, registro conformità, procedura sorveglianza umana) e dal MDR (se applicabile)?",
+      "options": [
+        "Sì",
+        "No",
+        "In preparazione"
+      ],
+      "optionScores": {
+        "Sì": 0,
+        "No": 3,
+        "In preparazione": 1.5
+      },
+      "risks": [
+        "R8",
+        "R16",
+        "R22"
+      ]
+    }
+  ],
+  "savedAt": "2026-06-03T15:30:01.792Z"
+}
