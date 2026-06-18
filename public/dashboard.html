@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDPR Risk Assessment Dashboard</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; background: #f0f2f5; }
+    .auth-guard { padding: 20px; background: #fff3cd; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+    .logout-btn { position: fixed; top: 20px; right: 20px; padding: 8px 16px; background: #cc0000; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; }
+    .logout-btn:hover { background: #a30000; }
+    .loading { text-align: center; font-size: 14px; color: #666; }
+  </style>
+</head>
+<body>
+  <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  <div class="auth-guard" id="authGuard" style="display: none;">
+    ⏳ Verifica autenticazione...
+  </div>
+  <div id="appContainer" style="display: none;"></div>
+
+  <script>
+    // Verifica token e carica app
+    async function initApp() {
+      const token = localStorage.getItem('gdpr_auth_token');
+      const authGuard = document.getElementById('authGuard');
+      const appContainer = document.getElementById('appContainer');
+
+      if (!token) {
+        window.location.href = '/index.html';
+        return;
+      }
+
+      authGuard.style.display = 'block';
+
+      // Verifica token con backend (opzionale)
+      try {
+        const res = await fetch('/.netlify/functions/verify-session', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!res.ok) {
+          throw new Error('Session expired');
+        }
+
+        authGuard.style.display = 'none';
+        appContainer.style.display = 'block';
+
+        // Carica il file GDPR_Risk_Dashboard_v5.3.html tramite fetch
+        // (in alternativa includi direttamente il codice HTML)
+        const dashRes = await fetch('/app.html');
+        const dashHtml = await dashRes.text();
+        appContainer.innerHTML = dashHtml;
+
+        // Esegui script se presenti
+        const scripts = appContainer.querySelectorAll('script');
+        scripts.forEach(script => {
+          const newScript = document.createElement('script');
+          newScript.textContent = script.textContent;
+          document.body.appendChild(newScript);
+        });
+
+      } catch (err) {
+        console.error('[AUTH] Error:', err);
+        logout();
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('gdpr_auth_token');
+      window.location.href = '/index.html';
+    }
+
+    // Avvia al caricamento
+    window.addEventListener('load', initApp);
+  </script>
+</body>
+</html>
