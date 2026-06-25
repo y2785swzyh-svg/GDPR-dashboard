@@ -4,183 +4,347 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GDPR Risk Assessment Dashboard — Login</title>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Nunito', system-ui, sans-serif;
+      background: #F0EDE6;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 24px;
     }
-    .login-container {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+
+    /* ── Contenitore split ── */
+    .login-outer {
+      font-family: 'Nunito', system-ui, sans-serif;
+      background: #F8F7F3;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(28,51,32,.15);
       width: 100%;
-      max-width: 420px;
-      padding: 40px;
+      max-width: 860px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
-    .login-header {
-      text-align: center;
-      margin-bottom: 32px;
+    @media (max-width: 620px) {
+      .login-outer { grid-template-columns: 1fr; }
+      .login-hero  { display: none; }
     }
-    .login-header h1 {
-      font-size: 24px;
-      color: #222;
-      margin-bottom: 8px;
+
+    /* ── Hero ── */
+    .login-hero {
+      background: #1C3320;
+      text-align: left;
+      padding: 2.8rem 2.4rem 2.4rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
-    .login-header p {
-      color: #666;
-      font-size: 14px;
+    .login-hero::after {
+      content: "";
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      pointer-events: none;
     }
-    .form-group {
-      margin-bottom: 20px;
+    .logo-tag {
+      font-size: .6rem;
+      font-weight: 300;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      margin-bottom: 2rem;
+      display: block;
     }
+    .login-hero h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.25;
+    }
+    .login-hero .regs {
+      color: rgba(255,255,255,.5);
+      font-size: .7rem;
+      font-weight: 400;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-top: .6rem;
+    }
+    .login-hero .divider {
+      width: 32px; height: 2px;
+      background: rgba(255,255,255,.2);
+      margin: 1.4rem 0;
+    }
+    .login-hero .desc {
+      color: rgba(255,255,255,.35);
+      font-size: .67rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── Card ── */
+    .login-card {
+      background: #F8F7F3;
+      padding: 2.2rem 2rem;
+    }
+
+    /* ── Tab bar ── */
+    .tab-bar {
+      display: flex;
+      border-bottom: 2px solid #e2ddd6;
+      margin-bottom: 1.6rem;
+      gap: 0;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      padding: .5rem 1rem .6rem;
+      font-family: 'Nunito', system-ui, sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: #8a8070;
+      cursor: pointer;
+      transition: color .15s, border-color .15s;
+    }
+    .tab-btn.active {
+      color: #1C3320;
+      border-bottom-color: #1C3320;
+    }
+    .tab-btn:hover:not(.active) { color: #3d3d3d; }
+
+    /* ── Pannelli tab ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Form ── */
+    .form-group { margin-bottom: .9rem; }
     .form-group label {
       display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 8px;
+      font-size: .75rem;
+      font-weight: 700;
+      color: #3d3d3d;
+      margin-bottom: .35rem;
+      letter-spacing: .02em;
     }
     .form-group input {
       width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 14px;
-      transition: all 0.2s;
+      padding: 10px 12px;
+      border: 1px solid #d5d0c8;
+      border-radius: 8px;
+      font-size: .88rem;
+      font-family: 'Nunito', system-ui, sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      transition: border-color .2s, box-shadow .2s;
     }
     .form-group input:focus {
       outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      border-color: #1C3320;
+      box-shadow: 0 0 0 3px rgba(28,51,32,.1);
     }
-    .turnstile-wrapper {
-      margin-bottom: 24px;
-      display: flex;
-      justify-content: center;
-    }
-    .btn-login {
+    .turnstile-wrapper { margin: .9rem 0 1rem; }
+    .btn-primary {
       width: 100%;
-      padding: 12px 20px;
-      background: #667eea;
+      padding: 11px 20px;
+      background: #1C3320;
       color: #fff;
       border: none;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: 600;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 700;
+      font-family: 'Nunito', system-ui, sans-serif;
       cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 12px;
+      transition: background .2s;
+      letter-spacing: .01em;
     }
-    .btn-login:hover {
-      background: #5568d3;
-    }
-    .btn-login:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-    .error {
-      background: #ffebee;
-      color: #c62828;
-      padding: 12px 14px;
-      border-radius: 6px;
-      font-size: 13px;
-      margin-bottom: 20px;
+    .btn-primary:hover   { background: #2a4d30; }
+    .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+
+    .alert {
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: .8rem;
+      margin-bottom: .9rem;
       display: none;
     }
-    .error.show {
-      display: block;
-    }
-    .loading {
-      display: none;
-      text-align: center;
-      font-size: 13px;
-      color: #666;
-      margin-top: 20px;
-    }
-    .loading.show {
-      display: block;
-    }
+    .alert.show    { display: block; }
+    .alert.error   { background: #fff0f0; color: #b91c1c; border: 1px solid #fecaca; }
+    .alert.success { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .alert.loading { background: #f8f7f3; color: #6b7280; border: 1px solid #e2ddd6; }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <div class="login-header">
-      <h1>GDPR Risk Assessment</h1>
-      <p>Dashboard Valutazione Rischi</p>
+  <div class="login-outer">
+
+    <!-- ── Hero ── -->
+    <div class="login-hero">
+      <span class="logo-tag">Aegis Advisory &nbsp;·&nbsp; Privacy Level Certification</span>
+      <h1>GDPR Risk<br>Assessment</h1>
+      <div class="regs">Privacy &nbsp;·&nbsp; GDPR &nbsp;·&nbsp; Cybersecurity</div>
+      <div class="divider"></div>
+      <div class="desc">Dashboard per la valutazione del rischio GDPR e la gestione delle vulnerabilità di sicurezza nelle release software.</div>
     </div>
 
-    <form id="loginForm">
-      <div class="error" id="errorMsg"></div>
+    <!-- ── Card ── -->
+    <div class="login-card">
 
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required autofocus>
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="accedi">🔑 Accedi</button>
+        <button class="tab-btn" data-tab="registra">📝 Nuova registrazione</button>
       </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+      <!-- Tab: Accedi -->
+      <div class="tab-panel active" id="panel-accedi">
+        <div class="alert error"   id="err-accedi"></div>
+        <div class="alert loading" id="load-accedi">Verifica in corso…</div>
+        <form id="formAccedi">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required autofocus autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn-primary" id="btn-accedi">Accedi</button>
+        </form>
       </div>
 
-      <div class="turnstile-wrapper">
-        <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA"></div>
+      <!-- Tab: Nuova registrazione -->
+      <div class="tab-panel" id="panel-registra">
+        <div class="alert error"   id="err-registra"></div>
+        <div class="alert success" id="ok-registra"></div>
+        <div class="alert loading" id="load-registra">Invio in corso…</div>
+        <form id="formRegistra">
+          <div class="form-group">
+            <label for="reg-nome">Nome e cognome</label>
+            <input type="text" id="reg-nome" name="nome" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="reg-azienda">Azienda</label>
+            <input type="text" id="reg-azienda" name="azienda" required autocomplete="organization">
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email aziendale</label>
+            <input type="email" id="reg-email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="reg-pw">Password</label>
+            <input type="password" id="reg-pw" name="password" required autocomplete="new-password" minlength="8">
+          </div>
+          <button type="submit" class="btn-primary" id="btn-registra">Richiedi accesso</button>
+        </form>
       </div>
 
-      <button type="submit" class="btn-login" id="btnLogin">Accedi</button>
-      <div class="loading" id="loading">⏳ Verifica in corso...</div>
-    </form>
-  </div>
+    </div><!-- /login-card -->
+  </div><!-- /login-outer -->
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    /* ── Tab switching ── */
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn, .tab-panel').forEach(el => el.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    /* ── Helpers ── */
+    function cfToken(wrapperId) {
+      const w = document.getElementById(wrapperId);
+      return w ? (w.querySelector('[name="cf-turnstile-response"]')?.value || '') : '';
+    }
+    function setUI(btnId, loadId, errId, okId, busy) {
+      document.getElementById(btnId).disabled = busy;
+      document.getElementById(loadId).classList.toggle('show', busy);
+      if (!busy && errId)  document.getElementById(errId).classList.remove('show');
+      if (!busy && okId)   document.getElementById(okId).classList.remove('show');
+    }
+    function showErr(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg; el.classList.add('show');
+    }
+    function showOk(id, msg) {
+      const el = document.getElementById(id);
+      el.textContent = msg; el.classList.add('show');
+    }
+
+    /* ── Login ── */
+    document.getElementById('formAccedi').addEventListener('submit', async e => {
       e.preventDefault();
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
-      const token = document.querySelector('[name="cf-turnstile-response"]').value;
-      const errorMsg = document.getElementById('errorMsg');
-      const btnLogin = document.getElementById('btnLogin');
-      const loading = document.getElementById('loading');
+      const token    = cfToken('ts-accedi');
 
-      if (!token) {
-        errorMsg.textContent = 'Completa la verifica Cloudflare.';
-        errorMsg.classList.add('show');
-        return;
-      }
 
-      btnLogin.disabled = true;
-      loading.classList.add('show');
-      errorMsg.classList.remove('show');
-
+      setUI('btn-accedi', 'load-accedi', 'err-accedi', null, true);
       try {
-        const res = await fetch('/.netlify/functions/login', {
+        const res  = await fetch('/.netlify/functions/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password, token })
         });
         const data = await res.json();
-
         if (res.ok && data.token) {
           localStorage.setItem('gdpr_auth_token', data.token);
           window.location.href = '/dashboard.html';
         } else {
-          errorMsg.textContent = data.error || 'Login fallito. Verifica credenziali.';
-          errorMsg.classList.add('show');
-          btnLogin.disabled = false;
-          loading.classList.remove('show');
-          turnstile.reset();
+          setUI('btn-accedi', 'load-accedi', null, null, false);
+          showErr('err-accedi', data.error || 'Credenziali non valide.');
+          if (typeof turnstile !== 'undefined') turnstile.reset(document.getElementById('ts-accedi'));
         }
       } catch (err) {
-        errorMsg.textContent = 'Errore di connessione: ' + err.message;
-        errorMsg.classList.add('show');
-        btnLogin.disabled = false;
-        loading.classList.remove('show');
+        setUI('btn-accedi', 'load-accedi', null, null, false);
+        showErr('err-accedi', 'Errore di connessione: ' + err.message);
+      }
+    });
+
+    /* ── Registrazione ── */
+    document.getElementById('formRegistra').addEventListener('submit', async e => {
+      e.preventDefault();
+      const token = cfToken('ts-registra');
+
+      setUI('btn-registra', 'load-registra', 'err-registra', 'ok-registra', true);
+      try {
+        const res  = await fetch('/.netlify/functions/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nome:     document.getElementById('reg-nome').value,
+            azienda:  document.getElementById('reg-azienda').value,
+            email:    document.getElementById('reg-email').value,
+            password: document.getElementById('reg-pw').value,
+            token
+          })
+        });
+        const data = await res.json();
+        setUI('btn-registra', 'load-registra', null, null, false);
+        if (res.ok) {
+          showOk('ok-registra', data.message || 'Richiesta inviata. Ti contatteremo a breve.');
+          document.getElementById('formRegistra').reset();
+          if (typeof turnstile !== 'undefined') turnstile.reset(document.getElementById('ts-registra'));
+        } else {
+          showErr('err-registra', data.error || 'Errore durante la registrazione.');
+          if (typeof turnstile !== 'undefined') turnstile.reset(document.getElementById('ts-registra'));
+        }
+      } catch (err) {
+        setUI('btn-registra', 'load-registra', null, null, false);
+        showErr('err-registra', 'Errore di connessione: ' + err.message);
       }
     });
   </script>

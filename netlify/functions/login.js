@@ -51,15 +51,6 @@ exports.handler = async (event) => {
   try {
     const { username, password, token } = JSON.parse(event.body);
 
-    // Valida Turnstile
-    const captchaOk = await verifyTurnstile(token);
-    if (!captchaOk) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: 'Captcha verification failed' })
-      };
-    }
-
     // Valida credenziali
     if (!username || !password) {
       return {
