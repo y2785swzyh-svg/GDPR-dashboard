@@ -1,8 +1,8 @@
 const crypto = require('crypto');
 
 const USERS = {
-  'demo':  { password: 'Aegis2026!Demo' },
-  'admin': { password: 'Aegis2026!Admin' }
+  'riccardo@abeti.net': { password: 'Aegis2026!Demo' },
+  'admin':              { password: 'Aegis2026!Admin' }
 };
 
 const SECRET_KEY = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
