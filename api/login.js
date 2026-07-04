@@ -16,7 +16,8 @@ function signJWT(payload) {
 
 const ALLOWED_ORIGINS = [
   'https://aegis-advisory.pages.dev',
-  'https://36a16e2b.aegis-advisory.pages.dev'
+  'https://36a16e2b.aegis-advisory.pages.dev',
+  'https://11b355bf.aegis-advisory.pages.dev'
 ];
 
 module.exports = async (req, res) => {
