@@ -17,6 +17,8 @@ function signJWT(payload) {
 function isAllowedOrigin(origin) {
   if (!origin) return false;
   if (origin === 'https://aegis-advisory.pages.dev') return true;
+  if (origin === 'https://aegis-advisory.it') return true;
+  if (origin === 'https://www.aegis-advisory.it') return true;
   if (/^https:\/\/[a-z0-9-]+\.aegis-advisory\.pages\.dev$/.test(origin)) return true;
   return false;
 }
