@@ -14,15 +14,16 @@ function signJWT(payload) {
   return `${header}.${body}.${signature}`;
 }
 
-const ALLOWED_ORIGINS = [
-  'https://aegis-advisory.pages.dev',
-  'https://36a16e2b.aegis-advisory.pages.dev',
-  'https://11b355bf.aegis-advisory.pages.dev'
-];
+function isAllowedOrigin(origin) {
+  if (!origin) return false;
+  if (origin === 'https://aegis-advisory.pages.dev') return true;
+  if (/^https:\/\/[a-z0-9-]+\.aegis-advisory\.pages\.dev$/.test(origin)) return true;
+  return false;
+}
 
 module.exports = async (req, res) => {
   const origin = req.headers.origin || '';
-  if (ALLOWED_ORIGINS.includes(origin)) {
+  if (isAllowedOrigin(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
