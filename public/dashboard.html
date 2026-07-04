@@ -20,6 +20,16 @@
   <div id="appContainer" style="display: none;"></div>
 
   <script>
+    // Accetta token passato via URL (handoff da pagina Aegis)
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const t = params.get('token');
+      if (t) {
+        try { localStorage.setItem('gdpr_auth_token', t); } catch(e) {}
+        history.replaceState(null, '', '/dashboard.html');
+      }
+    })();
+
     // Verifica token e carica app
     async function initApp() {
       const token = localStorage.getItem('gdpr_auth_token');
