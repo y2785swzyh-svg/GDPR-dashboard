@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wishlist Compleanno 🎂</title>
+  <title>Wishlist di Riccardo 🎂</title>
   <style>
     :root {
       --bg: #0f0f1a;
@@ -36,26 +36,98 @@
     /* ─── HEADER ─── */
     header {
       text-align: center;
-      padding: 48px 24px 32px;
-      position: relative;
+      padding: 48px 24px 28px;
     }
     .confetti-line {
       font-size: 1.6rem;
       letter-spacing: 4px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     header h1 {
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      font-weight: 800;
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 900;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      line-height: 1.15;
     }
-    header p.subtitle {
+    header .tagline {
       color: var(--text-muted);
       font-size: 1rem;
+      margin-bottom: 28px;
+    }
+
+    /* ─── COUNTDOWN ─── */
+    .countdown-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(224,64,251,0.12), rgba(0,176,255,0.1));
+      border: 1px solid rgba(224,64,251,0.3);
+      border-radius: 18px;
+      padding: 20px 32px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .countdown-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .countdown-units {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .cd-unit {
+      text-align: center;
+    }
+    .cd-number {
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--gold), #ff9800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cd-label {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+    }
+    .cd-sep {
+      font-size: 1.6rem;
+      color: var(--text-muted);
+      margin-top: -8px;
+    }
+    .birthday-over {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      padding: 8px 0;
+    }
+
+    /* ─── AGE BADGE ─── */
+    .age-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,215,64,0.12);
+      border: 1px solid rgba(255,215,64,0.3);
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 20px;
     }
 
     /* ─── MODE BADGE ─── */
@@ -67,21 +139,17 @@
       border-radius: 999px;
       font-size: 0.8rem;
       font-weight: 600;
-      margin: 12px auto 0;
       cursor: pointer;
       border: none;
       transition: opacity 0.2s;
+      font-family: inherit;
     }
     .mode-badge:hover { opacity: 0.8; }
     .mode-badge.owner { background: rgba(224,64,251,0.2); color: var(--accent); border: 1px solid rgba(224,64,251,0.4); }
     .mode-badge.guest { background: rgba(0,176,255,0.15); color: var(--accent2); border: 1px solid rgba(0,176,255,0.35); }
 
-    /* ─── MAIN LAYOUT ─── */
-    main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-    }
+    /* ─── MAIN ─── */
+    main { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
 
     /* ─── ADD FORM ─── */
     #add-section {
@@ -101,12 +169,9 @@
       align-items: center;
       gap: 8px;
     }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form-grid .full { grid-column: 1 / -1; }
+
     label {
       display: block;
       font-size: 0.78rem;
@@ -135,10 +200,7 @@
     textarea { resize: vertical; min-height: 72px; }
     select option { background: #1a1a2e; }
 
-    .priority-selector {
-      display: flex;
-      gap: 8px;
-    }
+    .priority-selector { display: flex; gap: 8px; }
     .priority-selector input[type="radio"] { display: none; }
     .priority-selector label {
       flex: 1;
@@ -155,8 +217,8 @@
       transition: all 0.15s;
       background: var(--bg);
     }
-    .priority-selector input[type="radio"]:checked + label.prio-alta { background: rgba(255,82,82,0.2); border-color: var(--red); color: var(--red); }
-    .priority-selector input[type="radio"]:checked + label.prio-media { background: rgba(255,215,64,0.2); border-color: var(--gold); color: var(--gold); }
+    .priority-selector input[type="radio"]:checked + label.prio-alta  { background: rgba(255,82,82,0.2);   border-color: var(--red);   color: var(--red); }
+    .priority-selector input[type="radio"]:checked + label.prio-media { background: rgba(255,215,64,0.2);  border-color: var(--gold);  color: var(--gold); }
     .priority-selector input[type="radio"]:checked + label.prio-bassa { background: rgba(105,240,174,0.2); border-color: var(--green); color: var(--green); }
 
     .btn {
@@ -177,17 +239,9 @@
     .btn-primary:hover { opacity: 0.88; }
     .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
     .btn-secondary:hover { border-color: var(--accent2); }
-    .btn-danger { background: rgba(255,82,82,0.15); color: var(--red); border: 1px solid rgba(255,82,82,0.3); }
-    .btn-danger:hover { background: rgba(255,82,82,0.25); }
     .btn-share { background: linear-gradient(135deg, var(--accent2), #0077b6); color: #fff; }
     .btn-share:hover { opacity: 0.88; }
-
-    .form-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-      justify-content: flex-end;
-    }
+    .form-actions { display: flex; gap: 10px; margin-top: 18px; justify-content: flex-end; }
 
     /* ─── TOOLBAR ─── */
     .toolbar {
@@ -198,7 +252,6 @@
       gap: 12px;
       margin-bottom: 18px;
     }
-    .toolbar-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     #filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
     .filter-btn {
       padding: 6px 14px;
@@ -218,12 +271,22 @@
       color: var(--accent);
     }
 
-    /* ─── ITEM CARDS ─── */
-    #items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    /* ─── STATS ─── */
+    .stats-bar { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      text-align: center;
+      flex: 1;
+      min-width: 80px;
     }
+    .stat-value { font-size: 1.5rem; font-weight: 800; }
+    .stat-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+    /* ─── ITEM CARDS ─── */
+    #items-list { display: flex; flex-direction: column; gap: 14px; }
     .item-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -240,30 +303,19 @@
     .item-card::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
+      left: 0; top: 0; bottom: 0;
       width: 4px;
     }
-    .item-card.prio-alta::before { background: var(--red); }
+    .item-card.prio-alta::before  { background: var(--red); }
     .item-card.prio-media::before { background: var(--gold); }
     .item-card.prio-bassa::before { background: var(--green); }
     .item-card:hover { border-color: rgba(255,255,255,0.2); box-shadow: var(--shadow); }
-    .item-card.status-riservato { opacity: 0.75; }
+    .item-card.status-riservato  { opacity: 0.75; }
     .item-card.status-acquistato { opacity: 0.45; }
 
     .item-left { min-width: 0; }
-    .item-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 6px;
-    }
-    .item-name {
-      font-weight: 700;
-      font-size: 1.05rem;
-    }
+    .item-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+    .item-name { font-weight: 700; font-size: 1.05rem; }
     .item-card.status-acquistato .item-name { text-decoration: line-through; color: var(--text-muted); }
 
     .badge {
@@ -278,75 +330,43 @@
       letter-spacing: 0.5px;
       white-space: nowrap;
     }
-    .badge-alta { background: rgba(255,82,82,0.2); color: var(--red); }
-    .badge-media { background: rgba(255,215,64,0.2); color: var(--gold); }
-    .badge-bassa { background: rgba(105,240,174,0.2); color: var(--green); }
+    .badge-alta        { background: rgba(255,82,82,0.2);    color: var(--red); }
+    .badge-media       { background: rgba(255,215,64,0.2);   color: var(--gold); }
+    .badge-bassa       { background: rgba(105,240,174,0.2);  color: var(--green); }
     .badge-disponibile { background: rgba(105,240,174,0.15); color: var(--green); }
-    .badge-riservato { background: rgba(255,215,64,0.15); color: var(--gold); }
-    .badge-acquistato { background: rgba(144,144,176,0.15); color: var(--text-muted); }
+    .badge-riservato   { background: rgba(255,215,64,0.15);  color: var(--gold); }
+    .badge-acquistato  { background: rgba(144,144,176,0.15); color: var(--text-muted); }
 
-    .item-price {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--accent2);
-      margin-bottom: 6px;
-    }
-    .item-notes { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px; }
+    .item-price  { font-size: 1.1rem; font-weight: 800; color: var(--accent2); margin-bottom: 6px; }
+    .item-notes  { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px; }
     .item-link a {
-      font-size: 0.85rem;
-      color: var(--accent2);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      font-size: 0.85rem; color: var(--accent2); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
     }
     .item-link a:hover { text-decoration: underline; }
+    .item-reserved-by { font-size: 0.8rem; color: var(--gold); margin-top: 4px; }
 
-    .item-reserved-by {
-      font-size: 0.8rem;
-      color: var(--gold);
-      margin-top: 4px;
-    }
-
-    .item-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      min-width: 130px;
-    }
+    .item-actions { display: flex; flex-direction: column; gap: 7px; min-width: 130px; }
     .btn-sm {
-      padding: 7px 12px;
-      font-size: 0.8rem;
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-      border: none;
-      font-weight: 600;
-      font-family: inherit;
-      transition: all 0.15s;
-      width: 100%;
+      padding: 7px 12px; font-size: 0.8rem; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      cursor: pointer; border: none; font-weight: 600; font-family: inherit;
+      transition: all 0.15s; width: 100%;
     }
     .btn-sm:active { transform: scale(0.96); }
-    .btn-edit { background: rgba(255,255,255,0.07); color: var(--text); }
-    .btn-edit:hover { background: rgba(224,64,251,0.15); color: var(--accent); }
-    .btn-delete { background: rgba(255,82,82,0.1); color: var(--red); }
+    .btn-edit    { background: rgba(255,255,255,0.07); color: var(--text); }
+    .btn-edit:hover   { background: rgba(224,64,251,0.15); color: var(--accent); }
+    .btn-delete  { background: rgba(255,82,82,0.1); color: var(--red); }
     .btn-delete:hover { background: rgba(255,82,82,0.2); }
     .btn-reserve { background: rgba(255,215,64,0.15); color: var(--gold); }
     .btn-reserve:hover { background: rgba(255,215,64,0.25); }
-    .btn-bought { background: rgba(105,240,174,0.1); color: var(--green); }
-    .btn-bought:hover { background: rgba(105,240,174,0.2); }
-    .btn-undo { background: rgba(255,255,255,0.06); color: var(--text-muted); font-size: 0.75rem; }
-    .btn-undo:hover { color: var(--text); }
+    .btn-bought  { background: rgba(105,240,174,0.1); color: var(--green); }
+    .btn-bought:hover  { background: rgba(105,240,174,0.2); }
+    .btn-undo    { background: rgba(255,255,255,0.06); color: var(--text-muted); font-size: 0.75rem; }
+    .btn-undo:hover    { color: var(--text); }
 
-    /* ─── EMPTY STATE ─── */
-    .empty-state {
-      text-align: center;
-      padding: 64px 24px;
-      color: var(--text-muted);
-    }
+    /* ─── EMPTY ─── */
+    .empty-state { text-align: center; padding: 64px 24px; color: var(--text-muted); }
     .empty-state .icon { font-size: 3rem; margin-bottom: 16px; }
     .empty-state h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
 
@@ -359,108 +379,38 @@
       margin-top: 32px;
       display: none;
     }
-    #share-panel h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-      color: var(--accent2);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .share-url-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    #share-url-input {
-      flex: 1;
-      font-size: 0.82rem;
-      padding: 9px 12px;
-      font-family: monospace;
-    }
-    .copy-feedback {
-      font-size: 0.82rem;
-      color: var(--green);
-      margin-top: 8px;
-      display: none;
-    }
-    .share-tip {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 12px;
-      line-height: 1.5;
-    }
+    #share-panel h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; color: var(--accent2); display: flex; align-items: center; gap: 8px; }
+    .share-url-row { display: flex; gap: 10px; align-items: center; }
+    #share-url-input { flex: 1; font-size: 0.82rem; padding: 9px 12px; font-family: monospace; }
+    .copy-feedback { font-size: 0.82rem; color: var(--green); margin-top: 8px; display: none; }
+    .share-tip { font-size: 0.82rem; color: var(--text-muted); margin-top: 12px; line-height: 1.5; }
 
-    /* ─── STATS ─── */
-    .stats-bar {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-    .stat {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 18px;
-      text-align: center;
-      flex: 1;
-      min-width: 80px;
-    }
-    .stat-value { font-size: 1.5rem; font-weight: 800; }
-    .stat-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-
-    /* ─── MODAL ─── */
+    /* ─── MODALS ─── */
     .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(4px);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      display: none;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px); z-index: 100;
+      display: none; align-items: center; justify-content: center; padding: 20px;
     }
     .modal-overlay.open { display: flex; }
     .modal {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 30px;
-      width: 100%;
-      max-width: 520px;
-      box-shadow: var(--shadow);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 30px;
+      width: 100%; max-width: 520px; box-shadow: var(--shadow);
     }
     .modal h2 { font-size: 1.15rem; margin-bottom: 20px; color: var(--accent); }
     .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
 
-    /* ─── GUEST RESERVE MODAL ─── */
-    #reserve-modal .reserve-content { text-align: center; padding: 8px 0; }
-    #reserve-modal .reserve-icon { font-size: 3rem; margin-bottom: 12px; }
+    #reserve-modal .reserve-icon { font-size: 3rem; text-align: center; margin-bottom: 12px; }
     #reserve-modal h2 { text-align: center; margin-bottom: 6px; }
     #reserve-modal .reserve-subtitle { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
 
     /* ─── TOAST ─── */
     .toast {
-      position: fixed;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      z-index: 999;
-      opacity: 0;
-      transition: opacity 0.2s;
-      pointer-events: none;
-      white-space: nowrap;
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); padding: 12px 24px; border-radius: 999px;
+      font-size: 0.9rem; font-weight: 600; z-index: 999;
+      opacity: 0; transition: opacity 0.2s; pointer-events: none; white-space: nowrap;
     }
     .toast.show { opacity: 1; }
 
@@ -471,13 +421,14 @@
       .item-card { grid-template-columns: 1fr; }
       .item-actions { flex-direction: row; flex-wrap: wrap; min-width: 0; }
       .btn-sm { flex: 1; min-width: 120px; }
-      header { padding: 32px 20px 24px; }
+      header { padding: 32px 20px 20px; }
+      .countdown-card { padding: 16px 20px; gap: 12px; }
+      .cd-number { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <!-- EDIT MODAL -->
@@ -491,7 +442,7 @@
         <input type="text" id="edit-name" placeholder="Es. Libro, Felpa, Cuffie..." />
       </div>
       <div>
-        <label>Prezzo indicativo</label>
+        <label>Prezzo indicativo (€)</label>
         <input type="number" id="edit-price" placeholder="Es. 49.99" min="0" step="0.01" />
       </div>
       <div>
@@ -518,17 +469,15 @@
   </div>
 </div>
 
-<!-- RESERVE MODAL (guest) -->
+<!-- RESERVE MODAL -->
 <div class="modal-overlay" id="reserve-modal">
   <div class="modal">
-    <div class="reserve-content">
-      <div class="reserve-icon">🎁</div>
-      <h2 id="reserve-item-name"></h2>
-      <p class="reserve-subtitle">Come vuoi comparire sulla wishlist?</p>
-      <div>
-        <label>Il tuo nome (opzionale)</label>
-        <input type="text" id="reserve-name-input" placeholder="Es. Mamma, Luca, Zia Maria..." />
-      </div>
+    <div class="reserve-icon">🎁</div>
+    <h2 id="reserve-item-name"></h2>
+    <p class="reserve-subtitle">Come vuoi comparire sulla wishlist?</p>
+    <div>
+      <label>Il tuo nome (opzionale)</label>
+      <input type="text" id="reserve-name-input" placeholder="Es. Mamma, Luca, Zia Maria..." />
     </div>
     <div class="modal-actions">
       <button class="btn btn-secondary" onclick="closeReserveModal()">Annulla</button>
@@ -540,44 +489,74 @@
 <!-- HEADER -->
 <header>
   <div class="confetti-line">🎂 🎈 🎁 🎉 🥳 🎊 🎈 🎂</div>
-  <h1 id="page-title">La mia Wishlist</h1>
-  <p class="subtitle" id="page-subtitle">Cosa vorrei per il mio compleanno</p>
+  <h1>Wishlist di Riccardo</h1>
+  <p class="tagline">Cosa vorrei per i miei 52 anni</p>
+
+  <div class="countdown-card">
+    <div>
+      <div class="countdown-label">🎂 29 agosto 2026</div>
+    </div>
+    <div class="countdown-units" id="countdown-units">
+      <div class="cd-unit">
+        <div class="cd-number" id="cd-days">--</div>
+        <div class="cd-label">giorni</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <div class="cd-number" id="cd-hours">--</div>
+        <div class="cd-label">ore</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <div class="cd-number" id="cd-mins">--</div>
+        <div class="cd-label">min</div>
+      </div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit">
+        <div class="cd-number" id="cd-secs">--</div>
+        <div class="cd-label">sec</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <span class="age-badge">🎂 29 agosto 1974 — 52 anni</span>
+  </div>
   <br>
   <button class="mode-badge owner" id="mode-btn" onclick="toggleMode()">
     <span id="mode-icon">✏️</span>
-    <span id="mode-label">Modalità proprietario</span>
+    <span id="mode-label">Modalità Riccardo</span>
   </button>
 </header>
 
 <main>
 
-  <!-- STATS -->
-  <div class="stats-bar" id="stats-bar">
+  <div class="stats-bar">
     <div class="stat">
       <div class="stat-value" id="stat-total">0</div>
-      <div class="stat-label">Articoli</div>
+      <div class="stat-label">Desideri</div>
     </div>
     <div class="stat">
-      <div class="stat-value" id="stat-available" style="color: var(--green)">0</div>
+      <div class="stat-value" id="stat-available" style="color:var(--green)">0</div>
       <div class="stat-label">Disponibili</div>
     </div>
     <div class="stat">
-      <div class="stat-value" id="stat-reserved" style="color: var(--gold)">0</div>
+      <div class="stat-value" id="stat-reserved" style="color:var(--gold)">0</div>
       <div class="stat-label">Riservati</div>
     </div>
     <div class="stat">
-      <div class="stat-value" id="stat-bought" style="color: var(--text-muted)">0</div>
+      <div class="stat-value" id="stat-bought" style="color:var(--text-muted)">0</div>
       <div class="stat-label">Acquistati</div>
     </div>
   </div>
 
-  <!-- ADD FORM (owner only) -->
+  <!-- ADD FORM -->
   <div id="add-section">
     <h2>✨ Aggiungi un desiderio</h2>
     <div class="form-grid">
       <div class="full">
         <label>Nome *</label>
-        <input type="text" id="new-name" placeholder="Es. Libro 'Il Nome della Rosa', Nike Air Max 90, AirPods..." />
+        <input type="text" id="new-name" placeholder="Es. Libro 'Il Nome della Rosa', Nike Air Max, AirPods..." />
       </div>
       <div>
         <label>Prezzo indicativo (€)</label>
@@ -586,8 +565,8 @@
       <div>
         <label>Priorità</label>
         <div class="priority-selector">
-          <input type="radio" name="new-priority" id="p-alta" value="alta" />
-          <label for="p-alta" class="prio-alta">🔴 Alta</label>
+          <input type="radio" name="new-priority" id="p-alta"  value="alta" />
+          <label for="p-alta"  class="prio-alta">🔴 Alta</label>
           <input type="radio" name="new-priority" id="p-media" value="media" checked />
           <label for="p-media" class="prio-media">🟡 Media</label>
           <input type="radio" name="new-priority" id="p-bassa" value="bassa" />
@@ -610,73 +589,86 @@
 
   <!-- TOOLBAR -->
   <div class="toolbar">
-    <div class="toolbar-left">
-      <div id="filter-btns">
-        <button class="filter-btn active" data-filter="tutti" onclick="setFilter('tutti', this)">Tutti</button>
-        <button class="filter-btn" data-filter="disponibile" onclick="setFilter('disponibile', this)">Disponibili</button>
-        <button class="filter-btn" data-filter="riservato" onclick="setFilter('riservato', this)">Riservati</button>
-        <button class="filter-btn" data-filter="acquistato" onclick="setFilter('acquistato', this)">Acquistati</button>
-      </div>
+    <div id="filter-btns">
+      <button class="filter-btn active" onclick="setFilter('tutti',this)">Tutti</button>
+      <button class="filter-btn" onclick="setFilter('disponibile',this)">Disponibili</button>
+      <button class="filter-btn" onclick="setFilter('riservato',this)">Riservati</button>
+      <button class="filter-btn" onclick="setFilter('acquistato',this)">Acquistati</button>
     </div>
-    <div>
-      <button class="btn btn-share" onclick="showSharePanel()">🔗 Condividi</button>
-    </div>
+    <button class="btn btn-share" onclick="showSharePanel()">🔗 Condividi</button>
   </div>
 
-  <!-- ITEMS LIST -->
   <div id="items-list"></div>
 
   <!-- SHARE PANEL -->
   <div id="share-panel">
-    <h3>🔗 Condividi la tua wishlist</h3>
-    <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:14px;">
-      Copia questo link e mandalo ad amici e parenti. Potranno vedere la lista e riservare i regali.
+    <h3>🔗 Condividi con amici e parenti</h3>
+    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;">
+      Copia il link e mandalo a chi vuoi. Potranno vedere la lista e prenotare i regali senza fare doppioni.
     </p>
     <div class="share-url-row">
       <input type="text" id="share-url-input" readonly />
       <button class="btn btn-share" onclick="copyShareUrl()">📋 Copia</button>
     </div>
-    <div class="copy-feedback" id="copy-feedback">✅ Link copiato!</div>
+    <div class="copy-feedback" id="copy-feedback">✅ Link copiato negli appunti!</div>
     <p class="share-tip">
-      💡 Le prenotazioni (stato "riservato" / "acquistato") vengono salvate nel link stesso.
-      Ogni volta che vuoi aggiornare il link da condividere, torna qui e copia il nuovo URL.
+      💡 Lo stato aggiornato viene codificato nel link. Ogni volta che aggiungi articoli, genera e condividi un nuovo link.
     </p>
   </div>
 
 </main>
 
 <script>
-  // ─── STATE ───────────────────────────────────────────────────────
-  const STORAGE_KEY = 'wishlist_items_v1';
-  const MODE_KEY    = 'wishlist_mode_v1';
+  const STORAGE_KEY = 'wishlist_riccardo_v1';
+  const MODE_KEY    = 'wishlist_riccardo_mode_v1';
+  const BIRTHDAY    = new Date('2026-08-29T00:00:00');
 
-  // Modes: 'owner' (can edit) | 'guest' (can only reserve)
   let mode = 'owner';
   let items = [];
   let currentFilter = 'tutti';
   let editingId = null;
   let reservingId = null;
 
-  // ─── INIT ────────────────────────────────────────────────────────
+  // ─── COUNTDOWN ──────────────────────────────────────────────────
+  function updateCountdown() {
+    const now  = new Date();
+    const diff = BIRTHDAY - now;
+
+    if (diff <= 0) {
+      document.getElementById('countdown-units').innerHTML =
+        '<div class="birthday-over">🥳 Buon compleanno Riccardo! 🎂</div>';
+      return;
+    }
+
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
+
+    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+
+  // ─── INIT ───────────────────────────────────────────────────────
   function init() {
-    // Check if viewing a shared link (URL hash contains encoded data)
     const hash = location.hash.slice(1);
     if (hash.startsWith('share=')) {
       loadFromHash(hash.slice(6));
       setMode('guest');
     } else {
       loadFromStorage();
-      const savedMode = localStorage.getItem(MODE_KEY) || 'owner';
-      setMode(savedMode);
+      setMode(localStorage.getItem(MODE_KEY) || 'owner');
     }
     render();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   }
 
   function loadFromStorage() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      items = raw ? JSON.parse(raw) : [];
-    } catch { items = []; }
+    try { items = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { items = []; }
   }
 
   function saveToStorage() {
@@ -684,50 +676,40 @@
   }
 
   function loadFromHash(encoded) {
-    try {
-      const json = atob(encoded);
-      items = JSON.parse(json);
-      // Keep reservations from hash but mark as guest-editable
-    } catch { items = []; }
+    try { items = JSON.parse(atob(encoded)); }
+    catch { items = []; }
   }
 
   function buildShareUrl() {
-    const encoded = btoa(JSON.stringify(items));
-    const base = location.origin + location.pathname;
-    return `${base}#share=${encoded}`;
+    return location.origin + location.pathname + '#share=' + btoa(JSON.stringify(items));
   }
 
-  // ─── MODE ────────────────────────────────────────────────────────
+  // ─── MODE ───────────────────────────────────────────────────────
   function setMode(m) {
     mode = m;
     localStorage.setItem(MODE_KEY, m);
-    const btn = document.getElementById('mode-btn');
-    const icon = document.getElementById('mode-icon');
-    const label = document.getElementById('mode-label');
-    const addSection = document.getElementById('add-section');
-    const subtitle = document.getElementById('page-subtitle');
+    const btn    = document.getElementById('mode-btn');
+    const icon   = document.getElementById('mode-icon');
+    const label  = document.getElementById('mode-label');
+    const addSec = document.getElementById('add-section');
 
     if (m === 'owner') {
-      btn.className = 'mode-badge owner';
-      icon.textContent = '✏️';
-      label.textContent = 'Modalità proprietario';
-      addSection.style.display = '';
-      subtitle.textContent = 'Cosa vorrei per il mio compleanno';
+      btn.className  = 'mode-badge owner';
+      icon.textContent  = '✏️';
+      label.textContent = 'Modalità Riccardo';
+      addSec.style.display = '';
     } else {
-      btn.className = 'mode-badge guest';
-      icon.textContent = '👀';
+      btn.className  = 'mode-badge guest';
+      icon.textContent  = '👀';
       label.textContent = 'Modalità ospite';
-      addSection.style.display = 'none';
-      subtitle.textContent = 'Riserva un regalo — clicca su "Lo prendo io!"';
+      addSec.style.display = 'none';
     }
     render();
   }
 
-  function toggleMode() {
-    setMode(mode === 'owner' ? 'guest' : 'owner');
-  }
+  function toggleMode() { setMode(mode === 'owner' ? 'guest' : 'owner'); }
 
-  // ─── CRUD ────────────────────────────────────────────────────────
+  // ─── CRUD ───────────────────────────────────────────────────────
   function newId() {
     return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   }
@@ -736,54 +718,46 @@
     const name = document.getElementById('new-name').value.trim();
     if (!name) { showToast('⚠️ Inserisci almeno il nome!'); return; }
 
-    const price = parseFloat(document.getElementById('new-price').value) || null;
-    const link  = document.getElementById('new-link').value.trim() || null;
-    const notes = document.getElementById('new-notes').value.trim() || null;
-    const priority = document.querySelector('input[name="new-priority"]:checked')?.value || 'media';
-
     items.unshift({
-      id: newId(),
+      id:         newId(),
       name,
-      price,
-      link,
-      notes,
-      priority,
-      status: 'disponibile',
+      price:      parseFloat(document.getElementById('new-price').value) || null,
+      link:       document.getElementById('new-link').value.trim()  || null,
+      notes:      document.getElementById('new-notes').value.trim() || null,
+      priority:   document.querySelector('input[name="new-priority"]:checked')?.value || 'media',
+      status:     'disponibile',
       reservedBy: null,
-      createdAt: Date.now(),
+      createdAt:  Date.now(),
     });
 
     saveToStorage();
     clearAddForm();
     render();
-    showToast('🎁 Articolo aggiunto!');
+    showToast('🎁 Aggiunto alla wishlist!');
   }
 
   function clearAddForm() {
-    document.getElementById('new-name').value = '';
-    document.getElementById('new-price').value = '';
-    document.getElementById('new-link').value = '';
-    document.getElementById('new-notes').value = '';
+    ['new-name','new-price','new-link','new-notes'].forEach(id => document.getElementById(id).value = '');
     document.querySelector('input[name="new-priority"][value="media"]').checked = true;
   }
 
   function deleteItem(id) {
-    if (!confirm('Rimuovere questo articolo dalla wishlist?')) return;
+    if (!confirm('Rimuovere questo articolo?')) return;
     items = items.filter(i => i.id !== id);
     saveToStorage();
     render();
-    showToast('🗑️ Articolo rimosso');
+    showToast('🗑️ Rimosso');
   }
 
   function openEditModal(id) {
     const item = items.find(i => i.id === id);
     if (!item) return;
     editingId = id;
-    document.getElementById('edit-name').value = item.name;
-    document.getElementById('edit-price').value = item.price ?? '';
+    document.getElementById('edit-name').value     = item.name;
+    document.getElementById('edit-price').value    = item.price ?? '';
     document.getElementById('edit-priority').value = item.priority;
-    document.getElementById('edit-link').value = item.link ?? '';
-    document.getElementById('edit-notes').value = item.notes ?? '';
+    document.getElementById('edit-link').value     = item.link  ?? '';
+    document.getElementById('edit-notes').value    = item.notes ?? '';
     document.getElementById('edit-modal-overlay').classList.add('open');
   }
 
@@ -808,7 +782,7 @@
     showToast('✅ Modifiche salvate');
   }
 
-  // ─── STATUS ──────────────────────────────────────────────────────
+  // ─── STATUS ─────────────────────────────────────────────────────
   function openReserveModal(id) {
     const item = items.find(i => i.id === id);
     if (!item) return;
@@ -826,9 +800,8 @@
   function confirmReserve() {
     const item = items.find(i => i.id === reservingId);
     if (!item) return;
-    const who = document.getElementById('reserve-name-input').value.trim() || null;
-    item.status = 'riservato';
-    item.reservedBy = who;
+    item.status     = 'riservato';
+    item.reservedBy = document.getElementById('reserve-name-input').value.trim() || null;
     if (mode === 'owner') saveToStorage();
     closeReserveModal();
     render();
@@ -854,7 +827,7 @@
     showToast('↩️ Stato ripristinato');
   }
 
-  // ─── FILTER ──────────────────────────────────────────────────────
+  // ─── FILTER ─────────────────────────────────────────────────────
   function setFilter(f, btn) {
     currentFilter = f;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -862,115 +835,97 @@
     render();
   }
 
-  function getFiltered() {
-    if (currentFilter === 'tutti') return items;
-    return items.filter(i => i.status === currentFilter);
-  }
-
-  // ─── RENDER ──────────────────────────────────────────────────────
+  // ─── RENDER ─────────────────────────────────────────────────────
   function render() {
-    const list = document.getElementById('items-list');
-    const filtered = getFiltered();
+    const filtered = currentFilter === 'tutti' ? items : items.filter(i => i.status === currentFilter);
 
-    // stats
-    document.getElementById('stat-total').textContent    = items.length;
+    document.getElementById('stat-total').textContent     = items.length;
     document.getElementById('stat-available').textContent = items.filter(i => i.status === 'disponibile').length;
     document.getElementById('stat-reserved').textContent  = items.filter(i => i.status === 'riservato').length;
     document.getElementById('stat-bought').textContent    = items.filter(i => i.status === 'acquistato').length;
 
-    if (filtered.length === 0) {
+    const list = document.getElementById('items-list');
+    if (!filtered.length) {
       list.innerHTML = `
         <div class="empty-state">
           <div class="icon">${currentFilter === 'tutti' ? '🎁' : '🔍'}</div>
-          <h3>${currentFilter === 'tutti' ? 'La wishlist è vuota!' : 'Nessun articolo in questa categoria'}</h3>
+          <h3>${currentFilter === 'tutti' ? 'Nessun desiderio ancora!' : 'Nessun articolo in questa categoria'}</h3>
           <p>${currentFilter === 'tutti' && mode === 'owner' ? 'Aggiungi il tuo primo desiderio qui sopra ↑' : ''}</p>
         </div>`;
       return;
     }
-
-    list.innerHTML = filtered.map(item => renderItem(item)).join('');
+    list.innerHTML = filtered.map(renderItem).join('');
   }
 
   function renderItem(item) {
-    const prioLabel = { alta: '🔴 Alta', media: '🟡 Media', bassa: '🟢 Bassa' }[item.priority] || '';
-    const prioClass = `badge-${item.priority}`;
-    const statusLabel = { disponibile: '✅ Disponibile', riservato: '⏳ Riservato', acquistato: '✔️ Acquistato' }[item.status] || '';
-    const statusClass = `badge-${item.status}`;
+    const prioLabels   = { alta:'🔴 Alta', media:'🟡 Media', bassa:'🟢 Bassa' };
+    const statusLabels = { disponibile:'✅ Disponibile', riservato:'⏳ Riservato', acquistato:'✔️ Acquistato' };
 
     const priceHtml = item.price != null
       ? `<div class="item-price">€ ${item.price.toFixed(2)}</div>` : '';
     const notesHtml = item.notes
-      ? `<div class="item-notes">${escHtml(item.notes)}</div>` : '';
+      ? `<div class="item-notes">${esc(item.notes)}</div>` : '';
     const linkHtml = item.link
-      ? `<div class="item-link"><a href="${escHtml(item.link)}" target="_blank" rel="noopener">🔗 Vedi il prodotto ↗</a></div>` : '';
-    const reservedByHtml = item.reservedBy
-      ? `<div class="item-reserved-by">👤 Riservato da: ${escHtml(item.reservedBy)}</div>` : '';
+      ? `<div class="item-link"><a href="${esc(item.link)}" target="_blank" rel="noopener">🔗 Vedi il prodotto ↗</a></div>` : '';
+    const reservedHtml = item.reservedBy
+      ? `<div class="item-reserved-by">👤 Riservato da: ${esc(item.reservedBy)}</div>` : '';
 
-    // Actions based on mode + status
     let actions = '';
     if (mode === 'owner') {
       actions = `
         <button class="btn-sm btn-edit" onclick="openEditModal('${item.id}')">✏️ Modifica</button>
         ${item.status !== 'acquistato' ? `<button class="btn-sm btn-reserve" onclick="openReserveModal('${item.id}')">🤝 Riserva</button>` : ''}
-        ${item.status !== 'acquistato' ? `<button class="btn-sm btn-bought" onclick="markBought('${item.id}')">✔️ Acquistato</button>` : ''}
+        ${item.status !== 'acquistato' ? `<button class="btn-sm btn-bought"  onclick="markBought('${item.id}')">✔️ Acquistato</button>` : ''}
         ${item.status !== 'disponibile' ? `<button class="btn-sm btn-undo" onclick="undoStatus('${item.id}')">↩️ Annulla</button>` : ''}
-        <button class="btn-sm btn-delete" onclick="deleteItem('${item.id}')">🗑️ Rimuovi</button>
-      `;
+        <button class="btn-sm btn-delete" onclick="deleteItem('${item.id}')">🗑️ Rimuovi</button>`;
     } else {
-      // Guest: can only reserve available items
-      if (item.status === 'disponibile') {
+      if (item.status === 'disponibile')
         actions = `<button class="btn-sm btn-reserve" onclick="openReserveModal('${item.id}')">🎁 Lo prendo io!</button>`;
-      } else if (item.status === 'riservato') {
+      else if (item.status === 'riservato')
         actions = `<button class="btn-sm btn-bought" onclick="markBought('${item.id}')">✔️ L'ho comprato</button>`;
-      }
     }
 
     return `
       <div class="item-card prio-${item.priority} status-${item.status}">
         <div class="item-left">
           <div class="item-header">
-            <span class="item-name">${escHtml(item.name)}</span>
-            <span class="badge ${prioClass}">${prioLabel}</span>
-            <span class="badge ${statusClass}">${statusLabel}</span>
+            <span class="item-name">${esc(item.name)}</span>
+            <span class="badge badge-${item.priority}">${prioLabels[item.priority]}</span>
+            <span class="badge badge-${item.status}">${statusLabels[item.status]}</span>
           </div>
-          ${priceHtml}
-          ${notesHtml}
-          ${linkHtml}
-          ${reservedByHtml}
+          ${priceHtml}${notesHtml}${linkHtml}${reservedHtml}
         </div>
         <div class="item-actions">${actions}</div>
       </div>`;
   }
 
-  function escHtml(str) {
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  // ─── SHARE ───────────────────────────────────────────────────────
+  // ─── SHARE ──────────────────────────────────────────────────────
   function showSharePanel() {
     const panel = document.getElementById('share-panel');
-    const url = buildShareUrl();
-    document.getElementById('share-url-input').value = url;
+    document.getElementById('share-url-input').value = buildShareUrl();
     document.getElementById('copy-feedback').style.display = 'none';
     panel.style.display = 'block';
-    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
   }
 
   function copyShareUrl() {
-    const input = document.getElementById('share-url-input');
-    navigator.clipboard.writeText(input.value).then(() => {
-      const fb = document.getElementById('copy-feedback');
-      fb.style.display = 'block';
-      setTimeout(() => { fb.style.display = 'none'; }, 3000);
+    const val = document.getElementById('share-url-input').value;
+    navigator.clipboard.writeText(val).then(() => {
+      document.getElementById('copy-feedback').style.display = 'block';
+      setTimeout(() => document.getElementById('copy-feedback').style.display = 'none', 3000);
       showToast('📋 Link copiato!');
     }).catch(() => {
-      input.select();
+      document.getElementById('share-url-input').select();
       document.execCommand('copy');
       showToast('📋 Link copiato!');
     });
   }
 
-  // ─── TOAST ───────────────────────────────────────────────────────
+  // ─── TOAST ──────────────────────────────────────────────────────
   let toastTimer;
   function showToast(msg) {
     const el = document.getElementById('toast');
@@ -980,18 +935,11 @@
     toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
   }
 
-  // ─── KEYBOARD ────────────────────────────────────────────────────
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      closeEditModal();
-      closeReserveModal();
-    }
-    if (e.key === 'Enter' && document.getElementById('edit-modal-overlay').classList.contains('open')) {
-      saveEdit();
-    }
+    if (e.key === 'Escape') { closeEditModal(); closeReserveModal(); }
+    if (e.key === 'Enter' && document.getElementById('edit-modal-overlay').classList.contains('open')) saveEdit();
   });
 
-  // ─── START ───────────────────────────────────────────────────────
   init();
 </script>
 </body>
