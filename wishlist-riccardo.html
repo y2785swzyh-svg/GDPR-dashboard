@@ -406,7 +406,23 @@
 
   <!-- SHARE PANEL -->
   <div id="share-panel">
-    <h3>📤 Condividi con amici e parenti</h3>
+
+    <!-- sezione A: sync tra propri dispositivi -->
+    <h3>📱 Apri su un altro dispositivo (iPhone, iPad…)</h3>
+    <p>Copia questo link e aprilo su qualsiasi tuo dispositivo — gli articoli sono già dentro, nessuna sincronizzazione necessaria.</p>
+    <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px">
+      <input type="text" id="sync-url" readonly
+        style="flex:1;font-size:.78rem;font-family:monospace;padding:9px 12px;
+               background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--muted)" />
+      <button class="btn btn-primary" onclick="copySyncUrl()" style="white-space:nowrap">📋 Copia</button>
+    </div>
+    <p id="sync-copy-ok" style="font-size:.8rem;color:var(--green);display:none">✅ Link copiato!</p>
+    <p style="font-size:.8rem;color:var(--muted);margin-bottom:24px;line-height:1.5">
+      ⚠️ Questo link è <strong>solo per te</strong> (richiede login su claude.ai). Per invitare amici usa la sezione sotto.
+    </p>
+
+    <!-- sezione B: condivisione ospiti -->
+    <h3 style="color:#00c853">📤 Condividi con amici e parenti</h3>
     <p>
       Genera una pagina ospite autonoma da inviare via WhatsApp, email o AirDrop.
       Chi la riceve può vedere la lista e prenotare i regali — senza bisogno di account.
@@ -455,8 +471,27 @@ function tick() {
 }
 
 /* ── STORAGE ── */
-function load() { try { items = JSON.parse(localStorage.getItem(SK)) || []; } catch { items = []; } }
-function save() { localStorage.setItem(SK, JSON.stringify(items)); }
+function encode(data) { return btoa(unescape(encodeURIComponent(JSON.stringify(data)))); }
+function decode(s)    { return JSON.parse(decodeURIComponent(escape(atob(s)))); }
+
+function load() {
+  const hash = location.hash.slice(1);
+  if (hash.startsWith('items=')) {
+    try { items = decode(hash.slice(6)); return; } catch {}
+  }
+  try { items = JSON.parse(localStorage.getItem(SK)) || []; } catch { items = []; }
+}
+
+function save() {
+  localStorage.setItem(SK, JSON.stringify(items));
+  try { history.replaceState(null, '', '#items=' + encode(items)); } catch {}
+  updateSyncUrl();
+}
+
+function updateSyncUrl() {
+  const el = document.getElementById('sync-url');
+  if (el) el.value = location.href;
+}
 function uid()  { return Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
 
 /* ── MODE ── */
@@ -606,9 +641,21 @@ function esc(s) {
 
 /* ── SHARE: GENERATE GUEST PAGE ── */
 function showShare() {
+  updateSyncUrl();
   const p = document.getElementById('share-panel');
   p.style.display = 'block';
   p.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function copySyncUrl() {
+  const val = document.getElementById('sync-url').value;
+  const ok  = document.getElementById('sync-copy-ok');
+  navigator.clipboard.writeText(val).catch(() => {
+    const el = document.getElementById('sync-url'); el.select(); document.execCommand('copy');
+  });
+  ok.style.display = 'block';
+  setTimeout(() => ok.style.display = 'none', 3000);
+  toast('📋 Link copiato!');
 }
 
 function guestHTML() {
@@ -829,6 +876,7 @@ document.addEventListener('keydown', e => {
 /* ── START ── */
 load();
 setMode(localStorage.getItem(MK) || 'owner');
+updateSyncUrl();
 tick(); setInterval(tick, 1000);
 </script>
 </body>
