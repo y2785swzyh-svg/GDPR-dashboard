@@ -15,932 +15,821 @@
       --green: #69f0ae;
       --red: #ff5252;
       --text: #f0f0f8;
-      --text-muted: #9090b0;
+      --muted: #9090b0;
       --border: rgba(255,255,255,0.1);
-      --radius: 14px;
-      --shadow: 0 8px 32px rgba(0,0,0,0.4);
+      --r: 14px;
+      --sh: 0 8px 32px rgba(0,0,0,0.4);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(224,64,251,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(0,176,255,0.08) 0%, transparent 60%);
+        radial-gradient(ellipse at 20% 50%, rgba(224,64,251,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(0,176,255,0.07) 0%, transparent 60%);
     }
 
-    /* ─── HEADER ─── */
-    header {
-      text-align: center;
-      padding: 48px 24px 28px;
-    }
-    .confetti-line {
-      font-size: 1.6rem;
-      letter-spacing: 4px;
-      margin-bottom: 14px;
-    }
-    header h1 {
-      font-size: clamp(2rem, 6vw, 3.4rem);
-      font-weight: 900;
+    /* ── HEADER ── */
+    header { text-align: center; padding: 44px 24px 24px; }
+    .confetti { font-size: 1.5rem; letter-spacing: 4px; margin-bottom: 14px; }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; line-height: 1.1;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       margin-bottom: 6px;
-      line-height: 1.15;
     }
-    header .tagline {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 28px;
-    }
+    .tagline { color: var(--muted); font-size: 0.95rem; margin-bottom: 24px; }
 
-    /* ─── COUNTDOWN ─── */
-    .countdown-card {
-      display: inline-flex;
-      align-items: center;
-      gap: 20px;
-      background: linear-gradient(135deg, rgba(224,64,251,0.12), rgba(0,176,255,0.1));
-      border: 1px solid rgba(224,64,251,0.3);
-      border-radius: 18px;
-      padding: 20px 32px;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
+    /* ── COUNTDOWN ── */
+    .cd-card {
+      display: inline-flex; align-items: center; gap: 16px; flex-wrap: wrap;
       justify-content: center;
+      background: linear-gradient(135deg, rgba(224,64,251,0.1), rgba(0,176,255,0.08));
+      border: 1px solid rgba(224,64,251,0.25);
+      border-radius: 18px; padding: 18px 28px; margin-bottom: 20px;
     }
-    .countdown-label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .countdown-units {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-    .cd-unit {
-      text-align: center;
-    }
-    .cd-number {
-      font-size: 2.2rem;
-      font-weight: 900;
-      line-height: 1;
+    .cd-label { font-size: 0.78rem; color: var(--muted); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px; }
+    .cd-units { display: flex; gap: 12px; align-items: center; }
+    .cd-unit { text-align: center; }
+    .cd-num {
+      font-size: 2rem; font-weight: 900; line-height: 1;
       background: linear-gradient(135deg, var(--gold), #ff9800);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .cd-label {
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 3px;
-    }
-    .cd-sep {
-      font-size: 1.6rem;
-      color: var(--text-muted);
-      margin-top: -8px;
-    }
-    .birthday-over {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--gold);
-      padding: 8px 0;
-    }
+    .cd-u { font-size: 0.65rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.5px; margin-top: 2px; }
+    .cd-sep { font-size: 1.4rem; color: var(--muted); margin-top: -6px; }
+    .cd-over { font-size: 1.1rem; font-weight: 700; color: var(--gold); }
 
-    /* ─── AGE BADGE ─── */
-    .age-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,215,64,0.12);
-      border: 1px solid rgba(255,215,64,0.3);
-      border-radius: 999px;
-      padding: 7px 18px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 20px;
+    .age-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,215,64,0.1); border: 1px solid rgba(255,215,64,0.28);
+      border-radius: 999px; padding: 6px 16px;
+      font-size: 0.85rem; font-weight: 700; color: var(--gold); margin-bottom: 18px;
     }
-
-    /* ─── MODE BADGE ─── */
-    .mode-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: opacity 0.2s;
-      font-family: inherit;
+    .mode-btn {
+      display: inline-flex; align-items: center; gap: 7px; padding: 6px 16px;
+      border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+      cursor: pointer; border: none; font-family: inherit; transition: opacity .2s;
     }
-    .mode-badge:hover { opacity: 0.8; }
-    .mode-badge.owner { background: rgba(224,64,251,0.2); color: var(--accent); border: 1px solid rgba(224,64,251,0.4); }
-    .mode-badge.guest { background: rgba(0,176,255,0.15); color: var(--accent2); border: 1px solid rgba(0,176,255,0.35); }
+    .mode-btn:hover { opacity: .8; }
+    .mode-btn.owner { background: rgba(224,64,251,0.18); color: var(--accent);
+      border: 1px solid rgba(224,64,251,0.38); }
+    .mode-btn.guest { background: rgba(0,176,255,0.14); color: var(--accent2);
+      border: 1px solid rgba(0,176,255,0.32); }
 
-    /* ─── MAIN ─── */
-    main { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+    /* ── MAIN ── */
+    main { max-width: 860px; margin: 0 auto; padding: 0 18px 80px; }
 
-    /* ─── ADD FORM ─── */
+    /* ── STATS ── */
+    .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+    .stat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 11px 16px; text-align: center; flex: 1; min-width: 72px;
+    }
+    .stat-v { font-size: 1.45rem; font-weight: 800; }
+    .stat-l { font-size: 0.68rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: .5px; margin-top: 2px; }
+
+    /* ── ADD FORM ── */
     #add-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 26px; margin-bottom: 28px; box-shadow: var(--sh);
     }
-    #add-section h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .form-grid .full { grid-column: 1 / -1; }
-
-    label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-    }
-    input[type="text"], input[type="url"], input[type="number"], textarea, select {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      padding: 10px 14px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      transition: border-color 0.2s;
-      outline: none;
+    #add-section h2 { font-size: 1.05rem; font-weight: 700; color: var(--accent);
+      margin-bottom: 18px; display: flex; align-items: center; gap: 7px; }
+    .fg { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fg .full { grid-column: 1/-1; }
+    label { display: block; font-size: .75rem; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
+    input[type=text], input[type=url], input[type=number], textarea, select {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); padding: 9px 13px;
+      font-size: .93rem; font-family: inherit; outline: none; transition: border-color .2s;
     }
     input:focus, textarea:focus, select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(224,64,251,0.1);
+      border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,64,251,0.1);
     }
-    textarea { resize: vertical; min-height: 72px; }
+    textarea { resize: vertical; min-height: 68px; }
     select option { background: #1a1a2e; }
 
-    .priority-selector { display: flex; gap: 8px; }
-    .priority-selector input[type="radio"] { display: none; }
-    .priority-selector label {
-      flex: 1;
-      text-align: center;
-      padding: 8px 6px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      font-size: 0.82rem;
-      text-transform: none;
-      letter-spacing: 0;
-      margin: 0;
-      color: var(--text-muted);
-      transition: all 0.15s;
-      background: var(--bg);
+    .prio-sel { display: flex; gap: 7px; }
+    .prio-sel input[type=radio] { display: none; }
+    .prio-sel label {
+      flex: 1; text-align: center; padding: 7px 5px; border-radius: 7px;
+      border: 1px solid var(--border); cursor: pointer; font-size: .8rem;
+      text-transform: none; letter-spacing: 0; margin: 0; color: var(--muted);
+      transition: all .15s; background: var(--bg);
     }
-    .priority-selector input[type="radio"]:checked + label.prio-alta  { background: rgba(255,82,82,0.2);   border-color: var(--red);   color: var(--red); }
-    .priority-selector input[type="radio"]:checked + label.prio-media { background: rgba(255,215,64,0.2);  border-color: var(--gold);  color: var(--gold); }
-    .priority-selector input[type="radio"]:checked + label.prio-bassa { background: rgba(105,240,174,0.2); border-color: var(--green); color: var(--green); }
+    .prio-sel input:checked + .la { background: rgba(255,82,82,0.18);
+      border-color: var(--red); color: var(--red); }
+    .prio-sel input:checked + .lm { background: rgba(255,215,64,0.18);
+      border-color: var(--gold); color: var(--gold); }
+    .prio-sel input:checked + .lb { background: rgba(105,240,174,0.18);
+      border-color: var(--green); color: var(--green); }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 22px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      border: none;
-      transition: all 0.15s;
-      font-family: inherit;
+      display: inline-flex; align-items: center; gap: 7px; padding: 10px 20px;
+      border-radius: 8px; font-weight: 600; font-size: .92rem; cursor: pointer;
+      border: none; transition: all .15s; font-family: inherit;
     }
-    .btn:active { transform: scale(0.97); }
+    .btn:active { transform: scale(.97); }
     .btn-primary { background: linear-gradient(135deg, var(--accent), #9c27b0); color: #fff; }
-    .btn-primary:hover { opacity: 0.88; }
-    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-    .btn-secondary:hover { border-color: var(--accent2); }
-    .btn-share { background: linear-gradient(135deg, var(--accent2), #0077b6); color: #fff; }
-    .btn-share:hover { opacity: 0.88; }
-    .form-actions { display: flex; gap: 10px; margin-top: 18px; justify-content: flex-end; }
+    .btn-primary:hover { opacity: .88; }
+    .btn-sec { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-sec:hover { border-color: var(--accent2); }
+    .btn-share { background: linear-gradient(135deg, #00c853, #00897b); color: #fff; }
+    .btn-share:hover { opacity: .88; }
+    .fa { display: flex; gap: 9px; margin-top: 16px; justify-content: flex-end; }
 
-    /* ─── TOOLBAR ─── */
-    .toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 18px;
+    /* ── TOOLBAR ── */
+    .toolbar { display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .filters { display: flex; gap: 5px; flex-wrap: wrap; }
+    .fb {
+      padding: 5px 13px; border-radius: 999px; font-size: .8rem; font-weight: 600;
+      border: 1px solid var(--border); background: transparent; color: var(--muted);
+      cursor: pointer; transition: all .15s; font-family: inherit;
     }
-    #filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-    .filter-btn {
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.15s;
-      font-family: inherit;
-    }
-    .filter-btn.active, .filter-btn:hover {
-      background: rgba(224,64,251,0.15);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .fb.on, .fb:hover { background: rgba(224,64,251,0.14); border-color: var(--accent); color: var(--accent); }
 
-    /* ─── STATS ─── */
-    .stats-bar { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
-    .stat {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 18px;
-      text-align: center;
-      flex: 1;
-      min-width: 80px;
+    /* ── CARDS ── */
+    #list { display: flex; flex-direction: column; gap: 12px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 18px 20px;
+      display: grid; grid-template-columns: 1fr auto; gap: 10px 18px;
+      align-items: start; transition: border-color .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
     }
-    .stat-value { font-size: 1.5rem; font-weight: 800; }
-    .stat-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+    .card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+    .card.pa::before { background: var(--red); }
+    .card.pm::before { background: var(--gold); }
+    .card.pb::before { background: var(--green); }
+    .card:hover { border-color: rgba(255,255,255,0.18); box-shadow: var(--sh); }
+    .card.sr { opacity: .74; }
+    .card.sa { opacity: .44; }
 
-    /* ─── ITEM CARDS ─── */
-    #items-list { display: flex; flex-direction: column; gap: 14px; }
-    .item-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px 20px;
-      align-items: start;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
+    .cl { min-width: 0; }
+    .ch { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
+    .cname { font-weight: 700; font-size: 1.02rem; }
+    .card.sa .cname { text-decoration: line-through; color: var(--muted); }
+
+    .bdg {
+      display: inline-flex; align-items: center; gap: 3px; padding: 2px 9px;
+      border-radius: 999px; font-size: .7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .5px; white-space: nowrap;
     }
-    .item-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 4px;
-    }
-    .item-card.prio-alta::before  { background: var(--red); }
-    .item-card.prio-media::before { background: var(--gold); }
-    .item-card.prio-bassa::before { background: var(--green); }
-    .item-card:hover { border-color: rgba(255,255,255,0.2); box-shadow: var(--shadow); }
-    .item-card.status-riservato  { opacity: 0.75; }
-    .item-card.status-acquistato { opacity: 0.45; }
+    .ba { background: rgba(255,82,82,0.18); color: var(--red); }
+    .bm { background: rgba(255,215,64,0.18); color: var(--gold); }
+    .bb { background: rgba(105,240,174,0.18); color: var(--green); }
+    .bd { background: rgba(105,240,174,0.13); color: var(--green); }
+    .br { background: rgba(255,215,64,0.13); color: var(--gold); }
+    .bq { background: rgba(144,144,176,0.13); color: var(--muted); }
 
-    .item-left { min-width: 0; }
-    .item-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
-    .item-name { font-weight: 700; font-size: 1.05rem; }
-    .item-card.status-acquistato .item-name { text-decoration: line-through; color: var(--text-muted); }
+    .cprice { font-size: 1.08rem; font-weight: 800; color: var(--accent2); margin-bottom: 5px; }
+    .cnotes { font-size: .86rem; color: var(--muted); margin-bottom: 7px; }
+    .clink a { font-size: .83rem; color: var(--accent2); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 3px; }
+    .clink a:hover { text-decoration: underline; }
+    .crby { font-size: .78rem; color: var(--gold); margin-top: 4px; }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-    .badge-alta        { background: rgba(255,82,82,0.2);    color: var(--red); }
-    .badge-media       { background: rgba(255,215,64,0.2);   color: var(--gold); }
-    .badge-bassa       { background: rgba(105,240,174,0.2);  color: var(--green); }
-    .badge-disponibile { background: rgba(105,240,174,0.15); color: var(--green); }
-    .badge-riservato   { background: rgba(255,215,64,0.15);  color: var(--gold); }
-    .badge-acquistato  { background: rgba(144,144,176,0.15); color: var(--text-muted); }
-
-    .item-price  { font-size: 1.1rem; font-weight: 800; color: var(--accent2); margin-bottom: 6px; }
-    .item-notes  { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 8px; }
-    .item-link a {
-      font-size: 0.85rem; color: var(--accent2); text-decoration: none;
-      display: inline-flex; align-items: center; gap: 4px;
-    }
-    .item-link a:hover { text-decoration: underline; }
-    .item-reserved-by { font-size: 0.8rem; color: var(--gold); margin-top: 4px; }
-
-    .item-actions { display: flex; flex-direction: column; gap: 7px; min-width: 130px; }
-    .btn-sm {
-      padding: 7px 12px; font-size: 0.8rem; border-radius: 7px;
-      display: flex; align-items: center; justify-content: center; gap: 5px;
+    .ca { display: flex; flex-direction: column; gap: 6px; min-width: 126px; }
+    .bs {
+      padding: 6px 11px; font-size: .78rem; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
       cursor: pointer; border: none; font-weight: 600; font-family: inherit;
-      transition: all 0.15s; width: 100%;
+      transition: all .15s; width: 100%;
     }
-    .btn-sm:active { transform: scale(0.96); }
-    .btn-edit    { background: rgba(255,255,255,0.07); color: var(--text); }
-    .btn-edit:hover   { background: rgba(224,64,251,0.15); color: var(--accent); }
-    .btn-delete  { background: rgba(255,82,82,0.1); color: var(--red); }
-    .btn-delete:hover { background: rgba(255,82,82,0.2); }
-    .btn-reserve { background: rgba(255,215,64,0.15); color: var(--gold); }
-    .btn-reserve:hover { background: rgba(255,215,64,0.25); }
-    .btn-bought  { background: rgba(105,240,174,0.1); color: var(--green); }
-    .btn-bought:hover  { background: rgba(105,240,174,0.2); }
-    .btn-undo    { background: rgba(255,255,255,0.06); color: var(--text-muted); font-size: 0.75rem; }
-    .btn-undo:hover    { color: var(--text); }
+    .bs:active { transform: scale(.96); }
+    .be { background: rgba(255,255,255,0.06); color: var(--text); }
+    .be:hover { background: rgba(224,64,251,0.14); color: var(--accent); }
+    .bdel { background: rgba(255,82,82,0.1); color: var(--red); }
+    .bdel:hover { background: rgba(255,82,82,0.2); }
+    .bres { background: rgba(255,215,64,0.14); color: var(--gold); }
+    .bres:hover { background: rgba(255,215,64,0.24); }
+    .bbuy { background: rgba(105,240,174,0.1); color: var(--green); }
+    .bbuy:hover { background: rgba(105,240,174,0.2); }
+    .bundo { background: rgba(255,255,255,0.05); color: var(--muted); font-size: .73rem; }
+    .bundo:hover { color: var(--text); }
 
-    /* ─── EMPTY ─── */
-    .empty-state { text-align: center; padding: 64px 24px; color: var(--text-muted); }
-    .empty-state .icon { font-size: 3rem; margin-bottom: 16px; }
-    .empty-state h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text); }
+    /* ── EMPTY ── */
+    .empty { text-align: center; padding: 60px 24px; color: var(--muted); }
+    .empty .ico { font-size: 2.8rem; margin-bottom: 14px; }
+    .empty h3 { font-size: 1.05rem; margin-bottom: 6px; color: var(--text); }
 
-    /* ─── SHARE PANEL ─── */
+    /* ── SHARE PANEL ── */
     #share-panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      margin-top: 32px;
-      display: none;
+      background: var(--surface); border: 1px solid rgba(0,200,83,0.3);
+      border-radius: var(--r); padding: 24px; margin-top: 28px; display: none;
     }
-    #share-panel h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; color: var(--accent2); display: flex; align-items: center; gap: 8px; }
-    .share-url-row { display: flex; gap: 10px; align-items: center; }
-    #share-url-input { flex: 1; font-size: 0.82rem; padding: 9px 12px; font-family: monospace; }
-    .copy-feedback { font-size: 0.82rem; color: var(--green); margin-top: 8px; display: none; }
-    .share-tip { font-size: 0.82rem; color: var(--text-muted); margin-top: 12px; line-height: 1.5; }
+    #share-panel h3 { font-size: 1rem; font-weight: 700; color: #00c853;
+      margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
+    #share-panel p { font-size: .86rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+    .share-steps { display: flex; flex-direction: column; gap: 10px; }
+    .share-step {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(255,255,255,0.04); border-radius: 10px; padding: 12px 14px;
+    }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #00c853, #00897b);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 800; color: #fff;
+    }
+    .step-text { font-size: .86rem; line-height: 1.5; color: var(--text); }
+    .step-text strong { color: #00c853; }
+    .share-btn-row { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .share-err { font-size: .82rem; color: var(--gold); margin-top: 10px; display: none; }
 
-    /* ─── MODALS ─── */
-    .modal-overlay {
+    /* ── MODALS ── */
+    .overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.7);
       backdrop-filter: blur(4px); z-index: 100;
-      display: none; align-items: center; justify-content: center; padding: 20px;
+      display: none; align-items: center; justify-content: center; padding: 18px;
     }
-    .modal-overlay.open { display: flex; }
+    .overlay.open { display: flex; }
     .modal {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 30px;
-      width: 100%; max-width: 520px; box-shadow: var(--shadow);
+      border-radius: var(--r); padding: 28px;
+      width: 100%; max-width: 500px; box-shadow: var(--sh);
     }
-    .modal h2 { font-size: 1.15rem; margin-bottom: 20px; color: var(--accent); }
-    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+    .modal h2 { font-size: 1.1rem; margin-bottom: 18px; color: var(--accent); }
+    .mact { display: flex; gap: 9px; justify-content: flex-end; margin-top: 18px; }
 
-    #reserve-modal .reserve-icon { font-size: 3rem; text-align: center; margin-bottom: 12px; }
-    #reserve-modal h2 { text-align: center; margin-bottom: 6px; }
-    #reserve-modal .reserve-subtitle { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+    #res-modal .rico { font-size: 2.8rem; text-align: center; margin-bottom: 10px; }
+    #res-modal h2 { text-align: center; }
+    #res-modal .sub { text-align: center; color: var(--muted); font-size: .88rem; margin-bottom: 18px; }
 
-    /* ─── TOAST ─── */
+    /* ── TOAST ── */
     .toast {
-      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%);
       background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text); padding: 12px 24px; border-radius: 999px;
-      font-size: 0.9rem; font-weight: 600; z-index: 999;
-      opacity: 0; transition: opacity 0.2s; pointer-events: none; white-space: nowrap;
+      color: var(--text); padding: 11px 22px; border-radius: 999px;
+      font-size: .88rem; font-weight: 600; z-index: 999;
+      opacity: 0; transition: opacity .2s; pointer-events: none; white-space: nowrap;
     }
-    .toast.show { opacity: 1; }
+    .toast.on { opacity: 1; }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 600px) {
-      .form-grid { grid-template-columns: 1fr; }
-      .form-grid .full { grid-column: 1; }
-      .item-card { grid-template-columns: 1fr; }
-      .item-actions { flex-direction: row; flex-wrap: wrap; min-width: 0; }
-      .btn-sm { flex: 1; min-width: 120px; }
-      header { padding: 32px 20px 20px; }
-      .countdown-card { padding: 16px 20px; gap: 12px; }
-      .cd-number { font-size: 1.8rem; }
+    @media (max-width: 580px) {
+      .fg { grid-template-columns: 1fr; }
+      .fg .full { grid-column: 1; }
+      .card { grid-template-columns: 1fr; }
+      .ca { flex-direction: row; flex-wrap: wrap; min-width: 0; }
+      .bs { flex: 1; min-width: 110px; }
+      header { padding: 28px 18px 18px; }
+      .cd-card { padding: 14px 18px; gap: 10px; }
+      .cd-num { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
-
 <div class="toast" id="toast"></div>
 
 <!-- EDIT MODAL -->
-<div class="modal-overlay" id="edit-modal-overlay">
+<div class="overlay" id="edit-ov">
   <div class="modal">
     <h2>✏️ Modifica articolo</h2>
-    <input type="hidden" id="edit-id" />
-    <div class="form-grid">
-      <div class="full">
-        <label>Nome *</label>
-        <input type="text" id="edit-name" placeholder="Es. Libro, Felpa, Cuffie..." />
-      </div>
-      <div>
-        <label>Prezzo indicativo (€)</label>
-        <input type="number" id="edit-price" placeholder="Es. 49.99" min="0" step="0.01" />
-      </div>
-      <div>
-        <label>Priorità</label>
-        <select id="edit-priority">
-          <option value="alta">🔴 Alta</option>
-          <option value="media">🟡 Media</option>
-          <option value="bassa">🟢 Bassa</option>
-        </select>
-      </div>
-      <div class="full">
-        <label>Link</label>
-        <input type="url" id="edit-link" placeholder="https://..." />
-      </div>
-      <div class="full">
-        <label>Note</label>
-        <textarea id="edit-notes" placeholder="Taglia, colore, variante..."></textarea>
-      </div>
+    <input type="hidden" id="eid" />
+    <div class="fg">
+      <div class="full"><label>Nome *</label>
+        <input type="text" id="en" /></div>
+      <div><label>Prezzo (€)</label>
+        <input type="number" id="ep" min="0" step="0.01" /></div>
+      <div><label>Priorità</label>
+        <select id="epr">
+          <option value="a">🔴 Alta</option>
+          <option value="m">🟡 Media</option>
+          <option value="b">🟢 Bassa</option>
+        </select></div>
+      <div class="full"><label>Link</label>
+        <input type="url" id="el" /></div>
+      <div class="full"><label>Note</label>
+        <textarea id="eno"></textarea></div>
     </div>
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeEditModal()">Annulla</button>
+    <div class="mact">
+      <button class="btn btn-sec" onclick="closeEdit()">Annulla</button>
       <button class="btn btn-primary" onclick="saveEdit()">💾 Salva</button>
     </div>
   </div>
 </div>
 
 <!-- RESERVE MODAL -->
-<div class="modal-overlay" id="reserve-modal">
+<div class="overlay" id="res-ov">
   <div class="modal">
-    <div class="reserve-icon">🎁</div>
-    <h2 id="reserve-item-name"></h2>
-    <p class="reserve-subtitle">Come vuoi comparire sulla wishlist?</p>
-    <div>
-      <label>Il tuo nome (opzionale)</label>
-      <input type="text" id="reserve-name-input" placeholder="Es. Mamma, Luca, Zia Maria..." />
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="closeReserveModal()">Annulla</button>
-      <button class="btn btn-reserve" onclick="confirmReserve()">🤝 Lo prendo io!</button>
+    <div class="rico">🎁</div>
+    <h2 id="rname"></h2>
+    <p class="sub">Come vuoi comparire sulla wishlist?</p>
+    <label>Il tuo nome (opzionale)</label>
+    <input type="text" id="rni" placeholder="Es. Mamma, Luca, Zia Maria…" />
+    <div class="mact">
+      <button class="btn btn-sec" onclick="closeRes()">Annulla</button>
+      <button class="btn bres" onclick="confirmRes()" style="padding:10px 20px;border-radius:8px;">🤝 Lo prendo io!</button>
     </div>
   </div>
 </div>
 
 <!-- HEADER -->
 <header>
-  <div class="confetti-line">🎂 🎈 🎁 🎉 🥳 🎊 🎈 🎂</div>
+  <div class="confetti">🎂 🎈 🎁 🎉 🥳 🎊 🎈 🎂</div>
   <h1>Wishlist di Riccardo</h1>
   <p class="tagline">Cosa vorrei per i miei 52 anni</p>
 
-  <div class="countdown-card">
-    <div>
-      <div class="countdown-label">🎂 29 agosto 2026</div>
-    </div>
-    <div class="countdown-units" id="countdown-units">
-      <div class="cd-unit">
-        <div class="cd-number" id="cd-days">--</div>
-        <div class="cd-label">giorni</div>
-      </div>
+  <div class="cd-card">
+    <div class="cd-label">🎂 29 agosto 2026</div>
+    <div class="cd-units" id="cd">
+      <div class="cd-unit"><div class="cd-num" id="cd-d">--</div><div class="cd-u">giorni</div></div>
       <div class="cd-sep">:</div>
-      <div class="cd-unit">
-        <div class="cd-number" id="cd-hours">--</div>
-        <div class="cd-label">ore</div>
-      </div>
+      <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><div class="cd-u">ore</div></div>
       <div class="cd-sep">:</div>
-      <div class="cd-unit">
-        <div class="cd-number" id="cd-mins">--</div>
-        <div class="cd-label">min</div>
-      </div>
+      <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><div class="cd-u">min</div></div>
       <div class="cd-sep">:</div>
-      <div class="cd-unit">
-        <div class="cd-number" id="cd-secs">--</div>
-        <div class="cd-label">sec</div>
-      </div>
+      <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-u">sec</div></div>
     </div>
   </div>
 
-  <div>
-    <span class="age-badge">🎂 29 agosto 1974 — 52 anni</span>
+  <div style="margin-bottom:14px">
+    <span class="age-chip">🎂 29 agosto 1974 — 52 anni</span>
   </div>
-  <br>
-  <button class="mode-badge owner" id="mode-btn" onclick="toggleMode()">
-    <span id="mode-icon">✏️</span>
-    <span id="mode-label">Modalità Riccardo</span>
+  <button class="mode-btn owner" id="mbtn" onclick="toggleMode()">
+    <span id="mico">✏️</span><span id="mlbl">Modalità Riccardo</span>
   </button>
 </header>
 
 <main>
-
-  <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-value" id="stat-total">0</div>
-      <div class="stat-label">Desideri</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value" id="stat-available" style="color:var(--green)">0</div>
-      <div class="stat-label">Disponibili</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value" id="stat-reserved" style="color:var(--gold)">0</div>
-      <div class="stat-label">Riservati</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value" id="stat-bought" style="color:var(--text-muted)">0</div>
-      <div class="stat-label">Acquistati</div>
-    </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-v" id="st">0</div><div class="stat-l">Desideri</div></div>
+    <div class="stat"><div class="stat-v" id="sd" style="color:var(--green)">0</div><div class="stat-l">Disponibili</div></div>
+    <div class="stat"><div class="stat-v" id="sr" style="color:var(--gold)">0</div><div class="stat-l">Riservati</div></div>
+    <div class="stat"><div class="stat-v" id="sa" style="color:var(--muted)">0</div><div class="stat-l">Acquistati</div></div>
   </div>
 
-  <!-- ADD FORM -->
+  <!-- ADD -->
   <div id="add-section">
     <h2>✨ Aggiungi un desiderio</h2>
-    <div class="form-grid">
-      <div class="full">
-        <label>Nome *</label>
-        <input type="text" id="new-name" placeholder="Es. Libro 'Il Nome della Rosa', Nike Air Max, AirPods..." />
-      </div>
-      <div>
-        <label>Prezzo indicativo (€)</label>
-        <input type="number" id="new-price" placeholder="Es. 49.99" min="0" step="0.01" />
-      </div>
-      <div>
-        <label>Priorità</label>
-        <div class="priority-selector">
-          <input type="radio" name="new-priority" id="p-alta"  value="alta" />
-          <label for="p-alta"  class="prio-alta">🔴 Alta</label>
-          <input type="radio" name="new-priority" id="p-media" value="media" checked />
-          <label for="p-media" class="prio-media">🟡 Media</label>
-          <input type="radio" name="new-priority" id="p-bassa" value="bassa" />
-          <label for="p-bassa" class="prio-bassa">🟢 Bassa</label>
-        </div>
-      </div>
-      <div class="full">
-        <label>Link (Amazon, Zalando, ecc.)</label>
-        <input type="url" id="new-link" placeholder="https://..." />
-      </div>
-      <div class="full">
-        <label>Note aggiuntive</label>
-        <textarea id="new-notes" placeholder="Taglia, colore preferito, variante specifica..."></textarea>
-      </div>
+    <div class="fg">
+      <div class="full"><label>Nome *</label>
+        <input type="text" id="nn" placeholder="Es. Libro, Cuffie, Nike Air Max…" /></div>
+      <div><label>Prezzo indicativo (€)</label>
+        <input type="number" id="np" placeholder="49.99" min="0" step="0.01" /></div>
+      <div><label>Priorità</label>
+        <div class="prio-sel">
+          <input type="radio" name="np" id="pa" value="a" /><label for="pa" class="la">🔴 Alta</label>
+          <input type="radio" name="np" id="pm" value="m" checked /><label for="pm" class="lm">🟡 Media</label>
+          <input type="radio" name="np" id="pb" value="b" /><label for="pb" class="lb">🟢 Bassa</label>
+        </div></div>
+      <div class="full"><label>Link (Amazon, Zalando…)</label>
+        <input type="url" id="nl" placeholder="https://…" /></div>
+      <div class="full"><label>Note</label>
+        <textarea id="nno" placeholder="Taglia, colore, variante…"></textarea></div>
     </div>
-    <div class="form-actions">
-      <button class="btn btn-primary" onclick="addItem()">🎁 Aggiungi alla wishlist</button>
+    <div class="fa">
+      <button class="btn btn-primary" onclick="addItem()">🎁 Aggiungi</button>
     </div>
   </div>
 
   <!-- TOOLBAR -->
   <div class="toolbar">
-    <div id="filter-btns">
-      <button class="filter-btn active" onclick="setFilter('tutti',this)">Tutti</button>
-      <button class="filter-btn" onclick="setFilter('disponibile',this)">Disponibili</button>
-      <button class="filter-btn" onclick="setFilter('riservato',this)">Riservati</button>
-      <button class="filter-btn" onclick="setFilter('acquistato',this)">Acquistati</button>
+    <div class="filters">
+      <button class="fb on" onclick="setF('all',this)">Tutti</button>
+      <button class="fb" onclick="setF('d',this)">Disponibili</button>
+      <button class="fb" onclick="setF('r',this)">Riservati</button>
+      <button class="fb" onclick="setF('a',this)">Acquistati</button>
     </div>
-    <button class="btn btn-share" onclick="showSharePanel()">🔗 Condividi</button>
+    <button class="btn btn-share" onclick="showShare()">📤 Condividi</button>
   </div>
 
-  <div id="items-list"></div>
+  <div id="list"></div>
 
   <!-- SHARE PANEL -->
   <div id="share-panel">
-    <h3>🔗 Condividi con amici e parenti</h3>
-    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;">
-      Copia il link e mandalo a chi vuoi. Potranno vedere la lista e prenotare i regali senza fare doppioni.
+    <h3>📤 Condividi con amici e parenti</h3>
+    <p>
+      Genera una pagina ospite autonoma da inviare via WhatsApp, email o AirDrop.
+      Chi la riceve può vedere la lista e prenotare i regali — senza bisogno di account.
     </p>
-    <div class="share-url-row">
-      <input type="text" id="share-url-input" readonly />
-      <button class="btn btn-share" onclick="copyShareUrl()">📋 Copia</button>
+    <div class="share-steps">
+      <div class="share-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Clicca <strong>Scarica pagina ospite</strong> qui sotto</div>
+      </div>
+      <div class="share-step">
+        <div class="step-num">2</div>
+        <div class="step-text">Il file <strong>wishlist-riccardo-ospiti.html</strong> viene salvato sul tuo dispositivo</div>
+      </div>
+      <div class="share-step">
+        <div class="step-num">3</div>
+        <div class="step-text">Invialo via <strong>WhatsApp, email o AirDrop</strong> — chi lo riceve lo apre nel browser e può riservare un regalo</div>
+      </div>
     </div>
-    <div class="copy-feedback" id="copy-feedback">✅ Link copiato negli appunti!</div>
-    <p class="share-tip">
-      💡 Lo stato aggiornato viene codificato nel link. Ogni volta che aggiungi articoli, genera e condividi un nuovo link.
-    </p>
+    <div class="share-btn-row">
+      <button class="btn btn-share" id="dl-btn" onclick="downloadGuest()">⬇️ Scarica pagina ospite</button>
+    </div>
+    <div class="share-err" id="share-err"></div>
   </div>
-
 </main>
 
 <script>
-  const STORAGE_KEY = 'wishlist_riccardo_v1';
-  const MODE_KEY    = 'wishlist_riccardo_mode_v1';
-  const BIRTHDAY    = new Date('2026-08-29T00:00:00');
+const SK = 'wishlist_r_v1', MK = 'wishlist_r_mode';
+const BDAY = new Date('2026-08-29T00:00:00');
+const PLABELS = { a:'🔴 Alta', m:'🟡 Media', b:'🟢 Bassa' };
+const SLABELS = { d:'✅ Disponibile', r:'⏳ Riservato', a:'✔️ Acquistato' };
 
-  let mode = 'owner';
-  let items = [];
-  let currentFilter = 'tutti';
-  let editingId = null;
-  let reservingId = null;
+let mode = 'owner', items = [], filter = 'all', editId = null, resId = null;
 
-  // ─── COUNTDOWN ──────────────────────────────────────────────────
-  function updateCountdown() {
-    const now  = new Date();
-    const diff = BIRTHDAY - now;
-
-    if (diff <= 0) {
-      document.getElementById('countdown-units').innerHTML =
-        '<div class="birthday-over">🥳 Buon compleanno Riccardo! 🎂</div>';
-      return;
-    }
-
-    const days  = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins  = Math.floor((diff % 3600000)  / 60000);
-    const secs  = Math.floor((diff % 60000)    / 1000);
-
-    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
-    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
-    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+/* ── COUNTDOWN ── */
+function tick() {
+  const diff = BDAY - new Date();
+  if (diff <= 0) {
+    document.getElementById('cd').innerHTML = '<div class="cd-over">🥳 Buon compleanno Riccardo!</div>';
+    return;
   }
+  const pad = n => String(n).padStart(2,'0');
+  document.getElementById('cd-d').textContent = pad(Math.floor(diff/86400000));
+  document.getElementById('cd-h').textContent = pad(Math.floor(diff%86400000/3600000));
+  document.getElementById('cd-m').textContent = pad(Math.floor(diff%3600000/60000));
+  document.getElementById('cd-s').textContent = pad(Math.floor(diff%60000/1000));
+}
 
-  // ─── INIT ───────────────────────────────────────────────────────
-  function init() {
-    const hash = location.hash.slice(1);
-    if (hash.startsWith('share=')) {
-      loadFromHash(hash.slice(6));
-      setMode('guest');
-    } else {
-      loadFromStorage();
-      setMode(localStorage.getItem(MODE_KEY) || 'owner');
-    }
-    render();
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
+/* ── STORAGE ── */
+function load() { try { items = JSON.parse(localStorage.getItem(SK)) || []; } catch { items = []; } }
+function save() { localStorage.setItem(SK, JSON.stringify(items)); }
+function uid()  { return Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
 
-  function loadFromStorage() {
-    try { items = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
-    catch { items = []; }
-  }
+/* ── MODE ── */
+function setMode(m) {
+  mode = m; localStorage.setItem(MK, m);
+  const btn = document.getElementById('mbtn');
+  btn.className = 'mode-btn ' + m;
+  document.getElementById('mico').textContent = m === 'owner' ? '✏️' : '👀';
+  document.getElementById('mlbl').textContent = m === 'owner' ? 'Modalità Riccardo' : 'Modalità ospite';
+  document.getElementById('add-section').style.display = m === 'owner' ? '' : 'none';
+  render();
+}
+function toggleMode() { setMode(mode === 'owner' ? 'guest' : 'owner'); }
 
-  function saveToStorage() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  }
-
-  function loadFromHash(encoded) {
-    try { items = JSON.parse(atob(encoded)); }
-    catch { items = []; }
-  }
-
-  function buildShareUrl() {
-    return location.origin + location.pathname + '#share=' + btoa(JSON.stringify(items));
-  }
-
-  // ─── MODE ───────────────────────────────────────────────────────
-  function setMode(m) {
-    mode = m;
-    localStorage.setItem(MODE_KEY, m);
-    const btn    = document.getElementById('mode-btn');
-    const icon   = document.getElementById('mode-icon');
-    const label  = document.getElementById('mode-label');
-    const addSec = document.getElementById('add-section');
-
-    if (m === 'owner') {
-      btn.className  = 'mode-badge owner';
-      icon.textContent  = '✏️';
-      label.textContent = 'Modalità Riccardo';
-      addSec.style.display = '';
-    } else {
-      btn.className  = 'mode-badge guest';
-      icon.textContent  = '👀';
-      label.textContent = 'Modalità ospite';
-      addSec.style.display = 'none';
-    }
-    render();
-  }
-
-  function toggleMode() { setMode(mode === 'owner' ? 'guest' : 'owner'); }
-
-  // ─── CRUD ───────────────────────────────────────────────────────
-  function newId() {
-    return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-  }
-
-  function addItem() {
-    const name = document.getElementById('new-name').value.trim();
-    if (!name) { showToast('⚠️ Inserisci almeno il nome!'); return; }
-
-    items.unshift({
-      id:         newId(),
-      name,
-      price:      parseFloat(document.getElementById('new-price').value) || null,
-      link:       document.getElementById('new-link').value.trim()  || null,
-      notes:      document.getElementById('new-notes').value.trim() || null,
-      priority:   document.querySelector('input[name="new-priority"]:checked')?.value || 'media',
-      status:     'disponibile',
-      reservedBy: null,
-      createdAt:  Date.now(),
-    });
-
-    saveToStorage();
-    clearAddForm();
-    render();
-    showToast('🎁 Aggiunto alla wishlist!');
-  }
-
-  function clearAddForm() {
-    ['new-name','new-price','new-link','new-notes'].forEach(id => document.getElementById(id).value = '');
-    document.querySelector('input[name="new-priority"][value="media"]').checked = true;
-  }
-
-  function deleteItem(id) {
-    if (!confirm('Rimuovere questo articolo?')) return;
-    items = items.filter(i => i.id !== id);
-    saveToStorage();
-    render();
-    showToast('🗑️ Rimosso');
-  }
-
-  function openEditModal(id) {
-    const item = items.find(i => i.id === id);
-    if (!item) return;
-    editingId = id;
-    document.getElementById('edit-name').value     = item.name;
-    document.getElementById('edit-price').value    = item.price ?? '';
-    document.getElementById('edit-priority').value = item.priority;
-    document.getElementById('edit-link').value     = item.link  ?? '';
-    document.getElementById('edit-notes').value    = item.notes ?? '';
-    document.getElementById('edit-modal-overlay').classList.add('open');
-  }
-
-  function closeEditModal() {
-    document.getElementById('edit-modal-overlay').classList.remove('open');
-    editingId = null;
-  }
-
-  function saveEdit() {
-    const item = items.find(i => i.id === editingId);
-    if (!item) return;
-    const name = document.getElementById('edit-name').value.trim();
-    if (!name) { showToast('⚠️ Il nome è obbligatorio!'); return; }
-    item.name     = name;
-    item.price    = parseFloat(document.getElementById('edit-price').value) || null;
-    item.priority = document.getElementById('edit-priority').value;
-    item.link     = document.getElementById('edit-link').value.trim() || null;
-    item.notes    = document.getElementById('edit-notes').value.trim() || null;
-    saveToStorage();
-    closeEditModal();
-    render();
-    showToast('✅ Modifiche salvate');
-  }
-
-  // ─── STATUS ─────────────────────────────────────────────────────
-  function openReserveModal(id) {
-    const item = items.find(i => i.id === id);
-    if (!item) return;
-    reservingId = id;
-    document.getElementById('reserve-item-name').textContent = item.name;
-    document.getElementById('reserve-name-input').value = '';
-    document.getElementById('reserve-modal').classList.add('open');
-  }
-
-  function closeReserveModal() {
-    document.getElementById('reserve-modal').classList.remove('open');
-    reservingId = null;
-  }
-
-  function confirmReserve() {
-    const item = items.find(i => i.id === reservingId);
-    if (!item) return;
-    item.status     = 'riservato';
-    item.reservedBy = document.getElementById('reserve-name-input').value.trim() || null;
-    if (mode === 'owner') saveToStorage();
-    closeReserveModal();
-    render();
-    showToast('🤝 Prenotazione confermata!');
-  }
-
-  function markBought(id) {
-    const item = items.find(i => i.id === id);
-    if (!item) return;
-    item.status = 'acquistato';
-    if (mode === 'owner') saveToStorage();
-    render();
-    showToast('✅ Segnato come acquistato');
-  }
-
-  function undoStatus(id) {
-    const item = items.find(i => i.id === id);
-    if (!item) return;
-    item.status = 'disponibile';
-    item.reservedBy = null;
-    if (mode === 'owner') saveToStorage();
-    render();
-    showToast('↩️ Stato ripristinato');
-  }
-
-  // ─── FILTER ─────────────────────────────────────────────────────
-  function setFilter(f, btn) {
-    currentFilter = f;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    render();
-  }
-
-  // ─── RENDER ─────────────────────────────────────────────────────
-  function render() {
-    const filtered = currentFilter === 'tutti' ? items : items.filter(i => i.status === currentFilter);
-
-    document.getElementById('stat-total').textContent     = items.length;
-    document.getElementById('stat-available').textContent = items.filter(i => i.status === 'disponibile').length;
-    document.getElementById('stat-reserved').textContent  = items.filter(i => i.status === 'riservato').length;
-    document.getElementById('stat-bought').textContent    = items.filter(i => i.status === 'acquistato').length;
-
-    const list = document.getElementById('items-list');
-    if (!filtered.length) {
-      list.innerHTML = `
-        <div class="empty-state">
-          <div class="icon">${currentFilter === 'tutti' ? '🎁' : '🔍'}</div>
-          <h3>${currentFilter === 'tutti' ? 'Nessun desiderio ancora!' : 'Nessun articolo in questa categoria'}</h3>
-          <p>${currentFilter === 'tutti' && mode === 'owner' ? 'Aggiungi il tuo primo desiderio qui sopra ↑' : ''}</p>
-        </div>`;
-      return;
-    }
-    list.innerHTML = filtered.map(renderItem).join('');
-  }
-
-  function renderItem(item) {
-    const prioLabels   = { alta:'🔴 Alta', media:'🟡 Media', bassa:'🟢 Bassa' };
-    const statusLabels = { disponibile:'✅ Disponibile', riservato:'⏳ Riservato', acquistato:'✔️ Acquistato' };
-
-    const priceHtml = item.price != null
-      ? `<div class="item-price">€ ${item.price.toFixed(2)}</div>` : '';
-    const notesHtml = item.notes
-      ? `<div class="item-notes">${esc(item.notes)}</div>` : '';
-    const linkHtml = item.link
-      ? `<div class="item-link"><a href="${esc(item.link)}" target="_blank" rel="noopener">🔗 Vedi il prodotto ↗</a></div>` : '';
-    const reservedHtml = item.reservedBy
-      ? `<div class="item-reserved-by">👤 Riservato da: ${esc(item.reservedBy)}</div>` : '';
-
-    let actions = '';
-    if (mode === 'owner') {
-      actions = `
-        <button class="btn-sm btn-edit" onclick="openEditModal('${item.id}')">✏️ Modifica</button>
-        ${item.status !== 'acquistato' ? `<button class="btn-sm btn-reserve" onclick="openReserveModal('${item.id}')">🤝 Riserva</button>` : ''}
-        ${item.status !== 'acquistato' ? `<button class="btn-sm btn-bought"  onclick="markBought('${item.id}')">✔️ Acquistato</button>` : ''}
-        ${item.status !== 'disponibile' ? `<button class="btn-sm btn-undo" onclick="undoStatus('${item.id}')">↩️ Annulla</button>` : ''}
-        <button class="btn-sm btn-delete" onclick="deleteItem('${item.id}')">🗑️ Rimuovi</button>`;
-    } else {
-      if (item.status === 'disponibile')
-        actions = `<button class="btn-sm btn-reserve" onclick="openReserveModal('${item.id}')">🎁 Lo prendo io!</button>`;
-      else if (item.status === 'riservato')
-        actions = `<button class="btn-sm btn-bought" onclick="markBought('${item.id}')">✔️ L'ho comprato</button>`;
-    }
-
-    return `
-      <div class="item-card prio-${item.priority} status-${item.status}">
-        <div class="item-left">
-          <div class="item-header">
-            <span class="item-name">${esc(item.name)}</span>
-            <span class="badge badge-${item.priority}">${prioLabels[item.priority]}</span>
-            <span class="badge badge-${item.status}">${statusLabels[item.status]}</span>
-          </div>
-          ${priceHtml}${notesHtml}${linkHtml}${reservedHtml}
-        </div>
-        <div class="item-actions">${actions}</div>
-      </div>`;
-  }
-
-  function esc(s) {
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  // ─── SHARE ──────────────────────────────────────────────────────
-  function showSharePanel() {
-    const panel = document.getElementById('share-panel');
-    document.getElementById('share-url-input').value = buildShareUrl();
-    document.getElementById('copy-feedback').style.display = 'none';
-    panel.style.display = 'block';
-    panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
-  }
-
-  function copyShareUrl() {
-    const val = document.getElementById('share-url-input').value;
-    navigator.clipboard.writeText(val).then(() => {
-      document.getElementById('copy-feedback').style.display = 'block';
-      setTimeout(() => document.getElementById('copy-feedback').style.display = 'none', 3000);
-      showToast('📋 Link copiato!');
-    }).catch(() => {
-      document.getElementById('share-url-input').select();
-      document.execCommand('copy');
-      showToast('📋 Link copiato!');
-    });
-  }
-
-  // ─── TOAST ──────────────────────────────────────────────────────
-  let toastTimer;
-  function showToast(msg) {
-    const el = document.getElementById('toast');
-    el.textContent = msg;
-    el.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeEditModal(); closeReserveModal(); }
-    if (e.key === 'Enter' && document.getElementById('edit-modal-overlay').classList.contains('open')) saveEdit();
+/* ── CRUD ── */
+function addItem() {
+  const name = document.getElementById('nn').value.trim();
+  if (!name) { toast('⚠️ Inserisci almeno il nome!'); return; }
+  items.unshift({
+    id: uid(), name,
+    price: parseFloat(document.getElementById('np').value) || null,
+    link:  document.getElementById('nl').value.trim() || null,
+    notes: document.getElementById('nno').value.trim() || null,
+    prio:  document.querySelector('input[name="np"]:checked')?.value || 'm',
+    status: 'd', resBy: null, ts: Date.now()
   });
+  save();
+  ['nn','np','nl','nno'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('pm').checked = true;
+  render(); toast('🎁 Aggiunto!');
+}
 
-  init();
+function del(id) {
+  if (!confirm('Rimuovere questo articolo?')) return;
+  items = items.filter(i => i.id !== id); save(); render(); toast('🗑️ Rimosso');
+}
+
+function openEdit(id) {
+  const it = items.find(i => i.id === id); if (!it) return;
+  editId = id;
+  document.getElementById('en').value  = it.name;
+  document.getElementById('ep').value  = it.price ?? '';
+  document.getElementById('epr').value = it.prio;
+  document.getElementById('el').value  = it.link  ?? '';
+  document.getElementById('eno').value = it.notes ?? '';
+  document.getElementById('edit-ov').classList.add('open');
+}
+function closeEdit() { document.getElementById('edit-ov').classList.remove('open'); editId = null; }
+function saveEdit() {
+  const it = items.find(i => i.id === editId); if (!it) return;
+  const name = document.getElementById('en').value.trim();
+  if (!name) { toast('⚠️ Nome obbligatorio!'); return; }
+  it.name = name; it.price = parseFloat(document.getElementById('ep').value) || null;
+  it.prio = document.getElementById('epr').value;
+  it.link = document.getElementById('el').value.trim() || null;
+  it.notes = document.getElementById('eno').value.trim() || null;
+  save(); closeEdit(); render(); toast('✅ Salvato');
+}
+
+/* ── STATUS ── */
+function openRes(id) {
+  const it = items.find(i => i.id === id); if (!it) return;
+  resId = id;
+  document.getElementById('rname').textContent = it.name;
+  document.getElementById('rni').value = '';
+  document.getElementById('res-ov').classList.add('open');
+}
+function closeRes() { document.getElementById('res-ov').classList.remove('open'); resId = null; }
+function confirmRes() {
+  const it = items.find(i => i.id === resId); if (!it) return;
+  it.status = 'r'; it.resBy = document.getElementById('rni').value.trim() || null;
+  if (mode === 'owner') save(); closeRes(); render(); toast('🤝 Prenotato!');
+}
+function markBought(id) {
+  const it = items.find(i => i.id === id); if (!it) return;
+  it.status = 'a'; if (mode === 'owner') save(); render(); toast('✅ Acquistato');
+}
+function undo(id) {
+  const it = items.find(i => i.id === id); if (!it) return;
+  it.status = 'd'; it.resBy = null; if (mode === 'owner') save(); render(); toast('↩️ Ripristinato');
+}
+
+/* ── FILTER ── */
+function setF(f, btn) {
+  filter = f;
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on'); render();
+}
+
+/* ── RENDER ── */
+function render() {
+  const fil = filter === 'all' ? items : items.filter(i => i.status === filter);
+  document.getElementById('st').textContent = items.length;
+  document.getElementById('sd').textContent = items.filter(i => i.status==='d').length;
+  document.getElementById('sr').textContent = items.filter(i => i.status==='r').length;
+  document.getElementById('sa').textContent = items.filter(i => i.status==='a').length;
+
+  const el = document.getElementById('list');
+  if (!fil.length) {
+    el.innerHTML = `<div class="empty"><div class="ico">${filter==='all'?'🎁':'🔍'}</div>
+      <h3>${filter==='all'?'Nessun desiderio ancora!':'Nessun articolo in questa categoria'}</h3>
+      <p>${filter==='all'&&mode==='owner'?'Aggiungi il tuo primo desiderio qui sopra ↑':''}</p></div>`;
+    return;
+  }
+  el.innerHTML = fil.map(card).join('');
+}
+
+function card(it) {
+  const pc = {a:'ba',m:'bm',b:'bb'}[it.prio];
+  const sc = {d:'bd',r:'br',a:'bq'}[it.status];
+  const cc = {a:'pa',m:'pm',b:'pb'}[it.prio];
+  const sc2= {d:'',r:'sr',a:'sa'}[it.status];
+
+  const price = it.price != null ? `<div class="cprice">€ ${it.price.toFixed(2)}</div>` : '';
+  const notes = it.notes ? `<div class="cnotes">${esc(it.notes)}</div>` : '';
+  const link  = it.link  ? `<div class="clink"><a href="${esc(it.link)}" target="_blank" rel="noopener">🔗 Vedi il prodotto ↗</a></div>` : '';
+  const rby   = it.resBy ? `<div class="crby">👤 Riservato da: ${esc(it.resBy)}</div>` : '';
+
+  let acts = '';
+  if (mode === 'owner') {
+    acts = `<button class="bs be" onclick="openEdit('${it.id}')">✏️ Modifica</button>
+      ${it.status!=='a'?`<button class="bs bres" onclick="openRes('${it.id}')">🤝 Riserva</button>`:''}
+      ${it.status!=='a'?`<button class="bs bbuy" onclick="markBought('${it.id}')">✔️ Acquistato</button>`:''}
+      ${it.status!=='d'?`<button class="bs bundo" onclick="undo('${it.id}')">↩️ Annulla</button>`:''}
+      <button class="bs bdel" onclick="del('${it.id}')">🗑️ Rimuovi</button>`;
+  } else {
+    if (it.status === 'd') acts = `<button class="bs bres" onclick="openRes('${it.id}')">🎁 Lo prendo io!</button>`;
+    else if (it.status === 'r') acts = `<button class="bs bbuy" onclick="markBought('${it.id}')">✔️ L'ho comprato</button>`;
+  }
+
+  return `<div class="card ${cc} ${sc2}">
+    <div class="cl">
+      <div class="ch">
+        <span class="cname">${esc(it.name)}</span>
+        <span class="bdg ${pc}">${PLABELS[it.prio]}</span>
+        <span class="bdg ${sc}">${SLABELS[it.status]}</span>
+      </div>
+      ${price}${notes}${link}${rby}
+    </div>
+    <div class="ca">${acts}</div>
+  </div>`;
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── SHARE: GENERATE GUEST PAGE ── */
+function showShare() {
+  const p = document.getElementById('share-panel');
+  p.style.display = 'block';
+  p.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function guestHTML() {
+  const data = JSON.stringify(items);
+  // Minimal self-contained guest page
+  return `<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Wishlist di Riccardo 🎂</title>
+<style>
+:root{--bg:#0f0f1a;--s:#1a1a2e;--s2:#16213e;--ac:#e040fb;--a2:#00b0ff;--go:#ffd740;--gr:#69f0ae;--re:#ff5252;--tx:#f0f0f8;--mu:#9090b0;--bo:rgba(255,255,255,0.1);--r:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;
+  background-image:radial-gradient(ellipse at 20% 50%,rgba(224,64,251,0.07) 0%,transparent 60%),
+  radial-gradient(ellipse at 80% 20%,rgba(0,176,255,0.07) 0%,transparent 60%)}
+header{text-align:center;padding:40px 20px 24px}
+.cf{font-size:1.4rem;letter-spacing:4px;margin-bottom:12px}
+h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;background:linear-gradient(135deg,var(--ac),var(--a2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.tg{color:var(--mu);font-size:.93rem;margin-bottom:20px}
+.info{display:inline-block;background:rgba(255,215,64,0.1);border:1px solid rgba(255,215,64,0.28);
+  border-radius:10px;padding:12px 20px;font-size:.84rem;color:var(--go);margin-bottom:10px;line-height:1.5}
+main{max-width:800px;margin:0 auto;padding:0 16px 60px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.stat{background:var(--s);border:1px solid var(--bo);border-radius:10px;padding:10px 14px;text-align:center;flex:1;min-width:68px}
+.sv{font-size:1.35rem;font-weight:800}.sl{font-size:.66rem;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.fb{padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600;
+  border:1px solid var(--bo);background:transparent;color:var(--mu);cursor:pointer;transition:all .15s;font-family:inherit}
+.fb.on,.fb:hover{background:rgba(224,64,251,0.14);border-color:var(--ac);color:var(--ac)}
+#list{display:flex;flex-direction:column;gap:11px}
+.card{background:var(--s);border:1px solid var(--bo);border-radius:var(--r);padding:16px 18px;
+  display:grid;grid-template-columns:1fr auto;gap:10px 16px;align-items:start;
+  position:relative;overflow:hidden;transition:border-color .2s}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+.pa::before{background:var(--re)}.pm::before{background:var(--go)}.pb::before{background:var(--gr)}
+.card:hover{border-color:rgba(255,255,255,0.18)}
+.card.sr{opacity:.74}.card.sa{opacity:.44}
+.cl{min-width:0}.ch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:4px}
+.cn{font-weight:700;font-size:1rem}.card.sa .cn{text-decoration:line-through;color:var(--mu)}
+.bdg{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.ba{background:rgba(255,82,82,0.18);color:var(--re)}.bm{background:rgba(255,215,64,0.18);color:var(--go)}
+.bb{background:rgba(105,240,174,0.18);color:var(--gr)}.bd{background:rgba(105,240,174,0.13);color:var(--gr)}
+.br{background:rgba(255,215,64,0.13);color:var(--go)}.bq{background:rgba(144,144,176,0.13);color:var(--mu)}
+.cp{font-size:1.05rem;font-weight:800;color:var(--a2);margin-bottom:4px}
+.cno{font-size:.84rem;color:var(--mu);margin-bottom:6px}
+.clk a{font-size:.82rem;color:var(--a2);text-decoration:none}
+.clk a:hover{text-decoration:underline}
+.crb{font-size:.76rem;color:var(--go);margin-top:3px}
+.ca{display:flex;flex-direction:column;gap:5px;min-width:118px}
+.bs{padding:6px 10px;font-size:.76rem;border-radius:7px;display:flex;align-items:center;
+  justify-content:center;gap:4px;cursor:pointer;border:none;font-weight:600;
+  font-family:inherit;transition:all .15s;width:100%}
+.bs:active{transform:scale(.96)}
+.bres{background:rgba(255,215,64,0.14);color:var(--go)}.bres:hover{background:rgba(255,215,64,0.24)}
+.bbuy{background:rgba(105,240,174,0.1);color:var(--gr)}.bbuy:hover{background:rgba(105,240,174,0.2)}
+.empty{text-align:center;padding:56px 20px;color:var(--mu)}
+.empty .ico{font-size:2.6rem;margin-bottom:12px}.empty h3{font-size:1rem;color:var(--tx)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);
+  z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+.overlay.open{display:flex}
+.modal{background:var(--s);border:1px solid var(--bo);border-radius:var(--r);
+  padding:26px;width:100%;max-width:440px;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.modal h2{font-size:1.05rem;margin-bottom:14px;color:var(--ac);text-align:center}
+.modal p{text-align:center;color:var(--mu);font-size:.86rem;margin-bottom:14px}
+.modal .ico2{font-size:2.5rem;text-align:center;margin-bottom:8px}
+label{display:block;font-size:.74rem;font-weight:600;color:var(--mu);
+  text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+input[type=text]{width:100%;background:#0f0f1a;border:1px solid var(--bo);
+  border-radius:8px;color:var(--tx);padding:9px 12px;font-size:.92rem;font-family:inherit;outline:none}
+input:focus{border-color:var(--ac)}
+.mact{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px;
+  font-weight:600;font-size:.9rem;cursor:pointer;border:none;transition:all .15s;font-family:inherit}
+.btn:active{transform:scale(.97)}
+.btn-p{background:linear-gradient(135deg,var(--ac),#9c27b0);color:#fff}.btn-p:hover{opacity:.88}
+.btn-s{background:var(--s2);color:var(--tx);border:1px solid var(--bo)}.btn-s:hover{border-color:var(--a2)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  background:var(--s2);border:1px solid var(--bo);color:var(--tx);padding:10px 20px;
+  border-radius:999px;font-size:.86rem;font-weight:600;z-index:999;
+  opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1}
+@media(max-width:520px){.card{grid-template-columns:1fr}.ca{flex-direction:row;flex-wrap:wrap;min-width:0}.bs{flex:1;min-width:100px}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="overlay" id="res-ov">
+  <div class="modal">
+    <div class="ico2">🎁</div>
+    <h2 id="rn"></h2>
+    <p>Come vuoi comparire sulla wishlist?</p>
+    <label>Il tuo nome (opzionale)</label>
+    <input type="text" id="rni" placeholder="Es. Mamma, Luca, Zia Maria…"/>
+    <div class="mact">
+      <button class="btn btn-s" onclick="closeRes()">Annulla</button>
+      <button class="btn btn-p" onclick="confirmRes()">🤝 Lo prendo io!</button>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="cf">🎂 🎈 🎁 🎉 🥳 🎊 🎈 🎂</div>
+  <h1>Wishlist di Riccardo</h1>
+  <p class="tg">29 agosto 2026 — 52 anni</p>
+  <div class="info">
+    🎁 Clicca <strong>"Lo prendo io!"</strong> per prenotare un regalo.<br>
+    Poi avvisa Riccardo così aggiorna la lista!
+  </div>
+</header>
+<main>
+  <div class="stats">
+    <div class="stat"><div class="sv" id="st">0</div><div class="sl">Desideri</div></div>
+    <div class="stat"><div class="sv" id="sd" style="color:var(--gr)">0</div><div class="sl">Disponibili</div></div>
+    <div class="stat"><div class="sv" id="sr2" style="color:var(--go)">0</div><div class="sl">Riservati</div></div>
+    <div class="stat"><div class="sv" id="sa2" style="color:var(--mu)">0</div><div class="sl">Acquistati</div></div>
+  </div>
+  <div class="filters">
+    <button class="fb on" onclick="setF('all',this)">Tutti</button>
+    <button class="fb" onclick="setF('d',this)">Disponibili</button>
+    <button class="fb" onclick="setF('r',this)">Riservati</button>
+    <button class="fb" onclick="setF('a',this)">Acquistati</button>
+  </div>
+  <div id="list"></div>
+</main>
+<script>
+const PL={a:'🔴 Alta',m:'🟡 Media',b:'🟢 Bassa'};
+const SL={d:'✅ Disponibile',r:'⏳ Riservato',a:'✔️ Acquistato'};
+let items=${data};
+let filter='all',resId=null;
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function setF(f,b){filter=f;document.querySelectorAll('.fb').forEach(x=>x.classList.remove('on'));b.classList.add('on');render();}
+function openRes(id){const it=items.find(i=>i.id===id);if(!it)return;resId=id;document.getElementById('rn').textContent=it.name;document.getElementById('rni').value='';document.getElementById('res-ov').classList.add('open');}
+function closeRes(){document.getElementById('res-ov').classList.remove('open');resId=null;}
+function confirmRes(){const it=items.find(i=>i.id===resId);if(!it)return;it.status='r';it.resBy=document.getElementById('rni').value.trim()||null;closeRes();render();toast('🤝 Prenotato! Ricordati di avvisare Riccardo 😊');}
+function markBought(id){const it=items.find(i=>i.id===id);if(!it)return;it.status='a';render();toast('✅ Segnato come acquistato!');}
+function render(){
+  const fil=filter==='all'?items:items.filter(i=>i.status===filter);
+  document.getElementById('st').textContent=items.length;
+  document.getElementById('sd').textContent=items.filter(i=>i.status==='d').length;
+  document.getElementById('sr2').textContent=items.filter(i=>i.status==='r').length;
+  document.getElementById('sa2').textContent=items.filter(i=>i.status==='a').length;
+  const el=document.getElementById('list');
+  if(!fil.length){el.innerHTML='<div class="empty"><div class="ico">🔍</div><h3>Nessun articolo qui</h3></div>';return;}
+  el.innerHTML=fil.map(it=>{
+    const pc={a:'ba',m:'bm',b:'bb'}[it.prio];
+    const sc={d:'bd',r:'br',a:'bq'}[it.status];
+    const cc={a:'pa',m:'pm',b:'pb'}[it.prio];
+    const sc2={d:'',r:'sr',a:'sa'}[it.status];
+    const price=it.price!=null?'<div class="cp">€ '+it.price.toFixed(2)+'</div>':'';
+    const notes=it.notes?'<div class="cno">'+esc(it.notes)+'</div>':'';
+    const link=it.link?'<div class="clk"><a href="'+esc(it.link)+'" target="_blank" rel="noopener">🔗 Vedi il prodotto ↗</a></div>':'';
+    const rby=it.resBy?'<div class="crb">👤 Riservato da: '+esc(it.resBy)+'</div>':'';
+    let acts='';
+    if(it.status==='d')acts='<button class="bs bres" onclick="openRes(\''+it.id+'\')">🎁 Lo prendo io!</button>';
+    else if(it.status==='r')acts='<button class="bs bbuy" onclick="markBought(\''+it.id+'\')">✔️ L\'ho comprato</button>';
+    return '<div class="card '+cc+' '+sc2+'"><div class="cl"><div class="ch"><span class="cn">'+esc(it.name)+'</span><span class="bdg '+pc+'">'+PL[it.prio]+'</span><span class="bdg '+sc+'">'+SL[it.status]+'</span></div>'+price+notes+link+rby+'</div><div class="ca">'+acts+'</div></div>';
+  }).join('');
+}
+let tt;function toast(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),3000);}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeRes();});
+render();
+<\/script>
+</body>
+</html>`;
+}
+
+async function downloadGuest() {
+  if (!items.length) { toast('⚠️ Aggiungi almeno un articolo prima di condividere!'); return; }
+  const btn = document.getElementById('dl-btn');
+  const err = document.getElementById('share-err');
+  err.style.display = 'none';
+  btn.textContent = '⏳ Generando…'; btn.disabled = true;
+
+  try {
+    if (!window.claude?.downloads) throw { code: 'unavailable' };
+    await window.claude.downloads.save({
+      filename: 'wishlist-riccardo-ospiti.html',
+      data: guestHTML()
+    });
+    btn.textContent = '✅ File scaricato!';
+    toast('🎉 Pagina ospite pronta da condividere!');
+    setTimeout(() => { btn.textContent = '⬇️ Scarica pagina ospite'; btn.disabled = false; }, 3000);
+  } catch (e) {
+    btn.textContent = '⬇️ Scarica pagina ospite'; btn.disabled = false;
+    if (e.code === 'declined') {
+      toast('Download annullato');
+    } else if (e.code === 'extension_not_enabled' || e.code === 'rejected_extension') {
+      // fallback: open in new tab so user can Save As
+      const blob = new Blob([guestHTML()], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'wishlist-riccardo-ospiti.html';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      toast('📄 Aperta in una nuova scheda — salva come HTML');
+    } else {
+      err.textContent = '⚠️ Download non disponibile in questa vista. Apri l\'app da computer per scaricare la pagina ospite.';
+      err.style.display = 'block';
+    }
+  }
+}
+
+/* ── TOAST ── */
+let tt; function toast(m) {
+  const e = document.getElementById('toast'); e.textContent = m; e.classList.add('on');
+  clearTimeout(tt); tt = setTimeout(()=>e.classList.remove('on'), 2800);
+}
+
+/* ── KEYBOARD ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeEdit(); closeRes(); }
+  if (e.key === 'Enter' && document.getElementById('edit-ov').classList.contains('open')) saveEdit();
+});
+
+/* ── START ── */
+load();
+setMode(localStorage.getItem(MK) || 'owner');
+tick(); setInterval(tick, 1000);
 </script>
 </body>
 </html>
