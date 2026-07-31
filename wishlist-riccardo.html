@@ -418,7 +418,7 @@
     </div>
     <p id="sync-copy-ok" style="font-size:.8rem;color:var(--green);display:none">✅ Link copiato!</p>
     <p style="font-size:.8rem;color:var(--muted);margin-bottom:24px;line-height:1.5">
-      ⚠️ Questo link è <strong>solo per te</strong> (richiede login su claude.ai). Per invitare amici usa la sezione sotto.
+      ⚠️ Questo link è <strong>solo per te</strong> — contiene tutti i tuoi articoli. Per invitare amici usa la sezione sotto.
     </p>
 
     <!-- sezione B: condivisione ospiti -->
@@ -825,6 +825,15 @@ render();
 </html>`;
 }
 
+function blobDownload() {
+  const blob = new Blob([guestHTML()], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'wishlist-riccardo-ospiti.html';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+}
+
 async function downloadGuest() {
   if (!items.length) { toast('⚠️ Aggiungi almeno un articolo prima di condividere!'); return; }
   const btn = document.getElementById('dl-btn');
@@ -832,30 +841,27 @@ async function downloadGuest() {
   err.style.display = 'none';
   btn.textContent = '⏳ Generando…'; btn.disabled = true;
 
+  const done = () => { btn.textContent = '✅ File scaricato!'; toast('🎉 Pagina ospite pronta!'); setTimeout(() => { btn.textContent = '⬇️ Scarica pagina ospite'; btn.disabled = false; }, 3000); };
+  const reset = () => { btn.textContent = '⬇️ Scarica pagina ospite'; btn.disabled = false; };
+
+  // Outside claude.ai (GitHub Pages, file://, ecc.) → blob diretto
+  if (!window.claude?.downloads) {
+    try { blobDownload(); done(); } catch(e) { reset(); err.textContent = '⚠️ Download fallito. Prova con un altro browser.'; err.style.display = 'block'; }
+    return;
+  }
+
+  // Inside claude.ai → API ufficiale con fallback
   try {
-    if (!window.claude?.downloads) throw { code: 'unavailable' };
-    await window.claude.downloads.save({
-      filename: 'wishlist-riccardo-ospiti.html',
-      data: guestHTML()
-    });
-    btn.textContent = '✅ File scaricato!';
-    toast('🎉 Pagina ospite pronta da condividere!');
-    setTimeout(() => { btn.textContent = '⬇️ Scarica pagina ospite'; btn.disabled = false; }, 3000);
+    await window.claude.downloads.save({ filename: 'wishlist-riccardo-ospiti.html', data: guestHTML() });
+    done();
   } catch (e) {
-    btn.textContent = '⬇️ Scarica pagina ospite'; btn.disabled = false;
+    reset();
     if (e.code === 'declined') {
       toast('Download annullato');
     } else if (e.code === 'extension_not_enabled' || e.code === 'rejected_extension') {
-      // fallback: open in new tab so user can Save As
-      const blob = new Blob([guestHTML()], {type:'text/html'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'wishlist-riccardo-ospiti.html';
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
-      toast('📄 Aperta in una nuova scheda — salva come HTML');
+      try { blobDownload(); done(); } catch(_) {}
     } else {
-      err.textContent = '⚠️ Download non disponibile in questa vista. Apri l\'app da computer per scaricare la pagina ospite.';
+      err.textContent = '⚠️ Download non disponibile. Prova con un altro browser.';
       err.style.display = 'block';
     }
   }
