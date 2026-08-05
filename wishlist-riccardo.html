@@ -422,29 +422,18 @@
     </p>
 
     <!-- sezione B: condivisione ospiti -->
-    <h3 style="color:#00c853">📤 Condividi con amici e parenti</h3>
-    <p>
-      Genera una pagina ospite autonoma da inviare via WhatsApp, email o AirDrop.
-      Chi la riceve può vedere la lista e prenotare i regali — senza bisogno di account.
+    <h3 style="color:#00c853">🎁 Condividi con amici e parenti</h3>
+    <p>Copia questo link e invialo via <strong>WhatsApp, email o SMS</strong>. Chi lo apre vede la tua lista e può prenotare regali — nessun account richiesto.</p>
+    <div style="display:flex;gap:10px;align-items:center;margin-bottom:6px">
+      <input type="text" id="guest-url" readonly
+        style="flex:1;font-size:.78rem;font-family:monospace;padding:9px 12px;
+               background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--muted)" />
+      <button class="btn btn-share" onclick="copyGuestUrl()" style="white-space:nowrap">🔗 Copia link</button>
+    </div>
+    <p id="guest-copy-ok" style="font-size:.8rem;color:var(--green);display:none">✅ Link copiato! Incollalo su WhatsApp o email.</p>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:6px;line-height:1.5">
+      ⚠️ Ogni volta che aggiungi o modifichi articoli, rigenera e rinvia il link.
     </p>
-    <div class="share-steps">
-      <div class="share-step">
-        <div class="step-num">1</div>
-        <div class="step-text">Clicca <strong>Scarica pagina ospite</strong> qui sotto</div>
-      </div>
-      <div class="share-step">
-        <div class="step-num">2</div>
-        <div class="step-text">Il file <strong>wishlist-riccardo-ospiti.html</strong> viene salvato sul tuo dispositivo</div>
-      </div>
-      <div class="share-step">
-        <div class="step-num">3</div>
-        <div class="step-text">Invialo via <strong>WhatsApp, email o AirDrop</strong> — chi lo riceve lo apre nel browser e può riservare un regalo</div>
-      </div>
-    </div>
-    <div class="share-btn-row">
-      <button class="btn btn-share" id="dl-btn" onclick="downloadGuest()">⬇️ Scarica pagina ospite</button>
-    </div>
-    <div class="share-err" id="share-err"></div>
   </div>
 </main>
 
@@ -486,6 +475,7 @@ function save() {
   localStorage.setItem(SK, JSON.stringify(items));
   try { history.replaceState(null, '', '#items=' + encode(items)); } catch {}
   updateSyncUrl();
+  updateGuestUrl();
 }
 
 function updateSyncUrl() {
@@ -640,8 +630,32 @@ function esc(s) {
 }
 
 /* ── SHARE: GENERATE GUEST PAGE ── */
+function guestUrl() {
+  const base = location.origin + location.pathname + '?guest';
+  return base + '#items=' + encode(items);
+}
+
+function updateGuestUrl() {
+  const el = document.getElementById('guest-url');
+  if (!el) return;
+  el.value = items.length ? guestUrl() : '(aggiungi prima qualche articolo)';
+}
+
+function copyGuestUrl() {
+  if (!items.length) { toast('⚠️ Aggiungi almeno un articolo!'); return; }
+  const val = guestUrl();
+  navigator.clipboard.writeText(val).catch(() => {
+    const el = document.getElementById('guest-url'); el.select(); document.execCommand('copy');
+  });
+  const ok = document.getElementById('guest-copy-ok');
+  ok.style.display = 'block';
+  setTimeout(() => ok.style.display = 'none', 4000);
+  toast('🔗 Link ospiti copiato!');
+}
+
 function showShare() {
   updateSyncUrl();
+  updateGuestUrl();
   const p = document.getElementById('share-panel');
   p.style.display = 'block';
   p.scrollIntoView({ behavior:'smooth', block:'nearest' });
@@ -881,7 +895,8 @@ document.addEventListener('keydown', e => {
 
 /* ── START ── */
 load();
-setMode(localStorage.getItem(MK) || 'owner');
+const _isGuest = new URLSearchParams(location.search).has('guest');
+setMode(_isGuest ? 'guest' : (localStorage.getItem(MK) || 'owner'));
 updateSyncUrl();
 tick(); setInterval(tick, 1000);
 </script>
